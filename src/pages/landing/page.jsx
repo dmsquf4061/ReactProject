@@ -1,4 +1,4 @@
-import Landing from '../../components/pages/landing/ladding';
+import Landing from '../../components/pages/landing/landing';
 
 function LandingPage() {
     return (

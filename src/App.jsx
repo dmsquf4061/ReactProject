@@ -7,7 +7,9 @@ import LandingPage from './pages/landing/page';
 function App() {
 
   return (
-    <div className="relative flex flex-col w-full min-h-screen">
+    <div 
+      className="relative flex flex-col w-screen h-screen overflow-hidden"
+    >
       <BrowserRouter>
           <Routes>
             <Route path='/' element={<LandingPage />}></Route>
