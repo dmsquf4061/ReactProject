@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -10,11 +9,8 @@ const TABS = [
   { id: "about", label: "About" },
 ]
 
-export default function Gnb({ onChange, show = true }) {
-  const [active, setActive] = useState("home")
-
+export default function Gnb({ active = "home", onChange, show = true }) {
   const handle = (id) => {
-    setActive(id)
     onChange?.(id)
   }
 
@@ -23,20 +19,30 @@ export default function Gnb({ onChange, show = true }) {
       {show && (
         <motion.nav
           key="pill-nav"
-          initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          exit={{ opacity: 0, y: 14, filter: "blur(6px)" }}
+          initial={{
+            opacity: 0,
+            //y: 14,
+          }}
+          animate={{
+            opacity: 1,
+            //y: 0,
+          }}
+          exit={{
+            opacity: 0,
+            //y: 14,
+          }}
           transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
           className="fixed left-1/2 bottom-8 -translate-x-1/2 z-[2000]"
+          style={{ willChange: "transform, opacity" }}
         >
-          {/* ✅ 1) 바깥 래퍼: 그림자 담당 (clip-path 없음) */}
+          {/* 바깥 래퍼: 그림자 담당 */}
           <div
             style={{
               boxShadow: "0 2px 6px rgba(0,0,0,0.35)",
               borderRadius: 9999,
             }}
           >
-            {/* ✅ 2) 안쪽: clip-path로 펼침 담당 */}
+            {/* 안쪽 pill: 가운데서 열리고, 다시 가운데로 접히며 사라짐 */}
             <motion.div
               initial={{
                 opacity: 0,
@@ -83,9 +89,9 @@ export default function Gnb({ onChange, show = true }) {
                         "relative z-[1] h-10 rounded-full px-5",
                         "text-[14px] font-normal cursor-pointer",
                         "hover:bg-transparent",
-                         isActive
-                          ? "text-[var(--muted-foreground)], hover:text-white"
-                          : "text-[var(--muted)]"
+                        isActive
+                          ? "text-white"
+                          : "text-[var(--muted)] hover:text-white"
                       )}
                     >
                       {t.label}

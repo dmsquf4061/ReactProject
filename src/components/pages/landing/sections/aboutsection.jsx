@@ -6,7 +6,7 @@ function AboutSection() {
   return (
     <div className="w-full h-full bg-stone-100 text-amber-950 text-4xl font-bold flex items-center justify-center">
       <motion.div
-        // ✅ 섹션이 렌더된 다음 텍스트가 등장
+        // 섹션이 렌더된 다음 텍스트가 등장
         initial="hidden"
         animate="show"
         variants={{

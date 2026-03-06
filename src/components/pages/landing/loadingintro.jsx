@@ -31,7 +31,7 @@ export default function LoadingIntro() {
       await animate(count, 100, { duration: 0.35, ease: "easeOut" })
 
       if (!mounted) return
-      // ✅ 100이 되는 "그 순간"부터: 배경 진해지고 위로 올라가는 퇴장 시작
+      // 100이 되는 "그 순간"부터: 배경 진해지고 위로 올라가는 퇴장 시작
       setDone(true)
     }
 
@@ -44,22 +44,18 @@ export default function LoadingIntro() {
   return (
     <motion.div
       className="fixed inset-0 z-[9999] flex items-center justify-center"
-      /**
-       * ✅ 기본: 화면 고정
-       * ✅ done=true: 위로 슬라이드하며 사라짐
-       */
+      /* 기본: 화면 고정
+       * done=true: 위로 슬라이드하며 사라짐 */
       initial={{ y: 0, opacity: 1 }}
       animate={done ? { y: "-100%", opacity: 1 } : { y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: "easeInOut" }}
-      /**
-       * ✅ 슬라이드 퇴장이 끝난 "그 순간" 전역 로딩 종료
-       */
+      /* 슬라이드 퇴장이 끝난 "그 순간" 전역 로딩 종료 */
       onAnimationComplete={() => {
         if (done) finishLoading()
       }}
       style={{ boxShadow: "0 30px 60px rgba(0,0,0,0.35)" }}
     >
-      {/* ✅ 배경: done 되는 순간 더 불투명(진하게) */}
+      {/* 배경: done 되는 순간 더 불투명(진하게) */}
       <motion.div
         className="absolute inset-0 bg-[var(--primary)]"
         initial={{ opacity: 0.9 }}

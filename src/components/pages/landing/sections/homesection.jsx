@@ -11,7 +11,7 @@ export default function HomeSection() {
   const stagger = 0.08
   const letterDuration = 0.18
 
-  // ✅ 첫 줄 애니메이션 전체 시간
+  // 첫 줄 애니메이션 전체 시간
   const subtitleDelay = delayChildren + title.length * stagger + letterDuration
 
   return (
@@ -60,7 +60,7 @@ export default function HomeSection() {
         animate={introDone ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
         transition={{
           duration: 0.4,
-          delay: subtitleDelay, // ✅ 첫 줄 끝난 뒤 등장
+          delay: subtitleDelay, // 첫 줄 끝난 뒤 등장
           ease: [0.22, 1, 0.36, 1],
         }}
       >

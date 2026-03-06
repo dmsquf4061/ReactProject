@@ -10,11 +10,17 @@ import WorkSection from "./sections/worksection"
 import ArchiveSection from "./sections/archivesection"
 import AboutSection from "./sections/aboutsection"
 
+import WorkModal from "./modal/workmodal/modal"
+
 export default function Landing() {
   const isLoading = useAppStore((s) => s.isLoading)
 
   const [active, setActive] = useState("home")
   const [tick, setTick] = useState(0)
+
+  // ✅ Work 모달 상태
+  const [isWorkModalOpen, setIsWorkModalOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(null)
 
   const SECTIONS = useMemo(
     () => ({
@@ -25,6 +31,7 @@ export default function Landing() {
     }),
     []
   )
+
   const ActiveSection = SECTIONS[active] ?? HomeSection
 
   const D_Y = 0.62
@@ -34,9 +41,24 @@ export default function Landing() {
   const handleNavChange = (id) => {
     setActive(id)
     setTick((t) => t + 1)
+
+    // ✅ 섹션 이동 시 모달 닫기
+    setIsWorkModalOpen(false)
+    setSelectedProject(null)
   }
 
-  // ✅ 첫 진입(로딩 중)에는 섹션이 "이미 완성 상태"로 깔려있게
+  // ✅ WorkSection에서 카드 클릭 시 호출
+  const handleOpenWorkModal = (project) => {
+    setSelectedProject(project)
+    setIsWorkModalOpen(true)
+  }
+
+  // ✅ 모달 닫기
+  const handleCloseWorkModal = () => {
+    setIsWorkModalOpen(false)
+    setSelectedProject(null)
+  }
+
   const sectionInitial = isLoading
     ? {
         y: "0%",
@@ -69,12 +91,11 @@ export default function Landing() {
     scale: 0.88,
     opacity: 1,
     borderRadius: 28,
-    zIndex: 10, // ✅ 기존 섹션은 아래에서 작아짐
+    zIndex: 10,
   }
 
   const sectionTransition = isLoading
     ? {
-        // ✅ 첫 진입은 움직임 없음(이미 깔려있게)
         y: { duration: 0 },
         scale: { duration: 0 },
         opacity: { duration: 0 },
@@ -87,7 +108,7 @@ export default function Landing() {
 
   return (
     <>
-      {/* Loader: 위에서 덮고 있다가 투명해지며 사라짐 */}
+      {/* 로딩 인트로 */}
       <AnimatePresence mode="wait">
         {isLoading && (
           <motion.div
@@ -102,17 +123,21 @@ export default function Landing() {
         )}
       </AnimatePresence>
 
-      <Gnb show={!isLoading} active={active} onChange={handleNavChange} />
+      {/* ✅ 모달이 열리면 GNB 숨김 */}
+      <Gnb
+        show={!isLoading && !isWorkModalOpen}
+        active={active}
+        onChange={handleNavChange}
+      />
 
-      <main className="relative min-h-screen overflow-hidden">
-        {/* 탭 전환은 sync로 exit/enter 동시 */}
+      <main className="relative min-h-screen">
         <AnimatePresence mode="sync" initial={false}>
           <motion.section
             key={`${active}-${tick}`}
-            className="absolute inset-0 min-h-screen"
+            className="absolute inset-0 h-screen"
             style={{
               transformOrigin: "50% 80%",
-              overflow: "hidden", // ✅ 라운드 공통 클리핑
+              overflow: "hidden",
               willChange: "transform, opacity",
             }}
             initial={sectionInitial}
@@ -120,10 +145,15 @@ export default function Landing() {
             exit={sectionExit}
             transition={sectionTransition}
           >
-            <ActiveSection />
+            {/* ✅ work 섹션일 때만 onOpenModal 전달 */}
+            {active === "work" ? (
+              <WorkSection onOpenModal={handleOpenWorkModal} />
+            ) : (
+              <ActiveSection />
+            )}
           </motion.section>
 
-          {/* dim: exit(10) 위 / enter(30) 아래 */}
+          {/* dim */}
           <motion.div
             key={`dim-${active}-${tick}`}
             className="absolute inset-0 pointer-events-none"
@@ -135,6 +165,13 @@ export default function Landing() {
           />
         </AnimatePresence>
       </main>
+
+      {/* ✅ Work 모달 */}
+      <WorkModal
+        open={isWorkModalOpen}
+        project={selectedProject}
+        onClose={handleCloseWorkModal}
+      />
     </>
   )
 }

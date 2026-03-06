@@ -4,13 +4,13 @@ import { useAppStore } from "@/store/appstore"
 function ArchiveSection() {
   const text = "ArchiveSection"
 
-  // ✅ 로딩 끝난 뒤에만 텍스트 애니메이션 시작
+  // 로딩 끝난 뒤에만 텍스트 애니메이션 시작
   const isLoading = useAppStore((s) => s.isLoading)
 
   return (
     <div className="w-full h-full bg-stone-100 text-amber-950 text-4xl font-bold flex items-center justify-center">
       <motion.div
-        // ✅ 섹션이 렌더된 다음 텍스트가 등장
+        // 섹션이 렌더된 다음 텍스트가 등장
         initial="hidden"
         animate="show"
         variants={{
