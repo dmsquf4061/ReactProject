@@ -6,7 +6,7 @@ import {
   useTransform,
 } from "motion/react"
 import { useEffect, useState } from "react"
-import { useAppStore } from "@/store/appStore"
+import { useAppStore } from "@/store/appstore"
 
 export default function LoadingIntro() {
   const finishLoading = useAppStore((state) => state.finishLoading)

@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "motion/react"
-import { useAppStore } from "@/store/appStore"
+import { useAppStore } from "@/store/appstore"
 
 function ArchiveSection() {
   const text = "ArchiveSection"

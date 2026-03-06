@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react"
 import { AnimatePresence, motion } from "motion/react"
-import { useAppStore } from "@/store/appStore"
+import { useAppStore } from "@/store/appstore"
 
 import LoadingIntro from "./loadingintro"
 import Gnb from "../common/gnb"

@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react"
 import { useEffect, useState } from "react"
-import { useAppStore } from "@/store/appStore"
+import { useAppStore } from "@/store/appstore"
 
 function WorkSection() {
   const introDone = useAppStore((s) => s.introDone)
