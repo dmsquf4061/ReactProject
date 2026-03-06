@@ -1,7 +1,7 @@
 import { motion } from "motion/react"
 
-function AboutSection() {
-  const text = "AboutSection"
+function DSection() {
+  const text = "DSection"
 
   return (
     <div className="w-full h-full bg-stone-100 text-amber-950 text-4xl font-bold flex items-center justify-center">
@@ -37,4 +37,4 @@ function AboutSection() {
   )
 }
 
-export default AboutSection
+export default DSection

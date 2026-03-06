@@ -1,8 +1,8 @@
 import { motion } from "motion/react"
 import { useAppStore } from "@/store/appstore"
 
-function ArchiveSection() {
-  const text = "ArchiveSection"
+function CSection() {
+  const text = "CSection"
 
   // 로딩 끝난 뒤에만 텍스트 애니메이션 시작
   const isLoading = useAppStore((s) => s.isLoading)
@@ -41,4 +41,4 @@ function ArchiveSection() {
   )
 }
 
-export default ArchiveSection
+export default CSection

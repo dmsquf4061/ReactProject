@@ -2,53 +2,53 @@ import { motion } from "motion/react"
 import { useEffect, useState } from "react"
 import { useAppStore } from "@/store/appstore"
 
-function WorkSection({ onOpenModal }) {
+function BSection({ onOpenModal }) {
   const projects = [
     {
       id: "p1",
-      title: "토끼런",
-      desc: "명부전 기반 퍼즐/디펜스 + 맵 서비스로 이어지는 인터랙티브 콘텐츠",
-      image: "/works/rabbitrun.jpg",
+      title: "제목",
+      desc: "설명을 쓰세요",
+      image: "/Bs/rabbitrun.jpg",
       tags: ["React", "Motion", "UI"],
       href: "#",
     },
     {
       id: "p2",
-      title: "너의 별 (eBook)",
-      desc: "페이지 타입별 이미지/영상/텍스트 조건 렌더링 + 애니메이션",
-      image: "/works/yourstar.jpg",
+      title: "제목",
+      desc: "설명을 쓰세요",
+      image: "/Bs/yourstar.jpg",
       tags: ["JS", "Turn.js", "Animation"],
       href: "#",
     },
     {
       id: "p3",
-      title: "토끼런",
-      desc: "명부전 기반 퍼즐/디펜스 + 맵 서비스로 이어지는 인터랙티브 콘텐츠",
-      image: "/works/rabbitrun.jpg",
+      title: "제목",
+      desc: "설명을 쓰세요",
+      image: "/Bs/rabbitrun.jpg",
       tags: ["React", "Motion", "UI"],
       href: "#",
     },
     {
       id: "p4",
-      title: "너의 별 (eBook)",
-      desc: "페이지 타입별 이미지/영상/텍스트 조건 렌더링 + 애니메이션",
-      image: "/works/yourstar.jpg",
+      title: "제목",
+      desc: "설명을 쓰세요",
+      image: "/Bs/yourstar.jpg",
       tags: ["JS", "Turn.js", "Animation"],
       href: "#",
     },
     {
       id: "p5",
-      title: "토끼런",
-      desc: "명부전 기반 퍼즐/디펜스 + 맵 서비스로 이어지는 인터랙티브 콘텐츠",
-      image: "/works/rabbitrun.jpg",
+      title: "제목",
+      desc: "설명을 쓰세요",
+      image: "/Bs/rabbitrun.jpg",
       tags: ["React", "Motion", "UI"],
       href: "#",
     },
     {
       id: "p6",
-      title: "너의 별 (eBook)",
-      desc: "페이지 타입별 이미지/영상/텍스트 조건 렌더링 + 애니메이션",
-      image: "/works/yourstar.jpg",
+      title: "제목",
+      desc: "설명을 쓰세요",
+      image: "/Bs/yourstar.jpg",
       tags: ["JS", "Turn.js", "Animation"],
       href: "#",
     },
@@ -68,7 +68,7 @@ function WorkSection({ onOpenModal }) {
   const state = play ? "show" : "hidden"
   const EASE = [0.22, 1, 0.36, 1]
 
-  const title = "Work"
+  const title = "B"
   const subtitle = "일부 프로젝트를 카드 형태로 정리했어요."
 
   const delayChildren = 0.15
@@ -221,4 +221,4 @@ function WorkSection({ onOpenModal }) {
   )
 }
 
-export default WorkSection
+export default BSection

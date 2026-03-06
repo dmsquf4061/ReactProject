@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 const TABS = [
-  { id: "home", label: "Home" },
-  { id: "work", label: "Work" },
-  { id: "archive", label: "Archive" },
-  { id: "about", label: "About" },
+  { id: "A", label: "A" },
+  { id: "B", label: "B" },
+  { id: "C", label: "C" },
+  { id: "D", label: "D" },
 ]
 
-export default function Gnb({ active = "home", onChange, show = true }) {
+export default function Gnb({ active = "A", onChange, show = true }) {
   const handle = (id) => {
     onChange?.(id)
   }

@@ -5,34 +5,34 @@ import { useAppStore } from "@/store/appstore"
 import LoadingIntro from "./loadingintro"
 import Gnb from "../common/gnb"
 
-import HomeSection from "./sections/homesection"
-import WorkSection from "./sections/worksection"
-import ArchiveSection from "./sections/archivesection"
-import AboutSection from "./sections/aboutsection"
+import ASection from "./sections/Asection"
+import BSection from "./sections/Bsection"
+import CSection from "./sections/Csection"
+import DSection from "./sections/Dsection"
 
-import WorkModal from "./modal/workmodal/modal"
+import BModal from "./modal/Bmodal/modal"
 
 export default function Landing() {
   const isLoading = useAppStore((s) => s.isLoading)
 
-  const [active, setActive] = useState("home")
+  const [active, setActive] = useState("A")
   const [tick, setTick] = useState(0)
 
-  // ✅ Work 모달 상태
-  const [isWorkModalOpen, setIsWorkModalOpen] = useState(false)
+  // ✅ B 모달 상태
+  const [isBModalOpen, setIsBModalOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState(null)
 
   const SECTIONS = useMemo(
     () => ({
-      home: HomeSection,
-      work: WorkSection,
-      archive: ArchiveSection,
-      about: AboutSection,
+      A: ASection,
+      B: BSection,
+      C: CSection,
+      D: DSection,
     }),
     []
   )
 
-  const ActiveSection = SECTIONS[active] ?? HomeSection
+  const ActiveSection = SECTIONS[active] ?? ASection
 
   const D_Y = 0.62
   const D_SCALE = 0.5
@@ -43,19 +43,19 @@ export default function Landing() {
     setTick((t) => t + 1)
 
     // ✅ 섹션 이동 시 모달 닫기
-    setIsWorkModalOpen(false)
+    setIsBModalOpen(false)
     setSelectedProject(null)
   }
 
-  // ✅ WorkSection에서 카드 클릭 시 호출
-  const handleOpenWorkModal = (project) => {
+  // ✅ BSection에서 카드 클릭 시 호출
+  const handleOpenBModal = (project) => {
     setSelectedProject(project)
-    setIsWorkModalOpen(true)
+    setIsBModalOpen(true)
   }
 
   // ✅ 모달 닫기
-  const handleCloseWorkModal = () => {
-    setIsWorkModalOpen(false)
+  const handleCloseBModal = () => {
+    setIsBModalOpen(false)
     setSelectedProject(null)
   }
 
@@ -123,9 +123,9 @@ export default function Landing() {
         )}
       </AnimatePresence>
 
-      {/* ✅ 모달이 열리면 GNB 숨김 */}
+      {/* 모달이 열리면 GNB 숨김 */}
       <Gnb
-        show={!isLoading && !isWorkModalOpen}
+        show={!isLoading && !isBModalOpen}
         active={active}
         onChange={handleNavChange}
       />
@@ -145,9 +145,9 @@ export default function Landing() {
             exit={sectionExit}
             transition={sectionTransition}
           >
-            {/* ✅ work 섹션일 때만 onOpenModal 전달 */}
-            {active === "work" ? (
-              <WorkSection onOpenModal={handleOpenWorkModal} />
+            {/* B 섹션일 때만 onOpenModal 전달 */}
+            {active === "B" ? (
+              <BSection onOpenModal={handleOpenBModal} />
             ) : (
               <ActiveSection />
             )}
@@ -166,11 +166,11 @@ export default function Landing() {
         </AnimatePresence>
       </main>
 
-      {/* ✅ Work 모달 */}
-      <WorkModal
-        open={isWorkModalOpen}
+      {/* B 모달 */}
+      <BModal
+        open={isBModalOpen}
         project={selectedProject}
-        onClose={handleCloseWorkModal}
+        onClose={handleCloseBModal}
       />
     </>
   )

@@ -26,9 +26,9 @@ function Footer({ variant = "light" }) {
           </div>
 
           <nav className={`flex gap-5 md:gap-10 text-xs ${v.text}`}>
-            <a className="hover:opacity-80">About</a>
+            <a className="hover:opacity-80">D</a>
             <span>|</span>
-            <a className="hover:opacity-80">Works</a>
+            <a className="hover:opacity-80">Bs</a>
             <span>|</span>
             <a className="hover:opacity-80">Process</a>
             <span>|</span>

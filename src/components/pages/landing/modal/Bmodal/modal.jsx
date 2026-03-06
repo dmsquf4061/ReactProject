@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useRef, useState } from "react"
 
-function WorkModal({ open, project, onClose }) {
+function BModal({ open, project, onClose }) {
     const EASE = [0.22, 1, 0.36, 1]
 
     const [full, setFull] = useState(false)
@@ -167,15 +167,15 @@ function WorkModal({ open, project, onClose }) {
                                         key="close-button"
                                         initial={{
                                             opacity: 0,
-                                            clipPath: "inset(0 50% 0 50% round 12px)",
+                                            clipPath: "inset(0 50% 0 50% round 0px)",
                                         }}
                                         animate={{
                                             opacity: 1,
-                                            clipPath: "inset(0 0% 0 0% round 12px)",
+                                            clipPath: "inset(0 0% 0 0% round 50px)",
                                         }}
                                         exit={{
                                             opacity: 0,
-                                            clipPath: "inset(0 50% 0 50% round 12px)",
+                                            clipPath: "inset(0 50% 0 50% round 0px)",
                                         }}
                                         transition={{
                                             duration: 0.3,
@@ -200,4 +200,4 @@ function WorkModal({ open, project, onClose }) {
   )
 }
 
-export default WorkModal
+export default BModal

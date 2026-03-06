@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 function NotFound() {
   const navigate = useNavigate();
 
-  const handleGoHome = () => {
+  const handleGoA = () => {
     navigate("/");
   };
 
@@ -17,7 +17,7 @@ function NotFound() {
 
         <div className="mt-8 flex gap-2">
           <button
-            onClick={handleGoHome}
+            onClick={handleGoA}
             className="
               rounded-lg border border-stone-400
               px-5 py-2
