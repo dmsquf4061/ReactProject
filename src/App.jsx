@@ -12,7 +12,7 @@ function App() {
     >
       <BrowserRouter>
           <Routes>
-            <Route path='/' element={<LandingPage />}></Route>
+            <Route path='/ReactProject' element={<LandingPage />}></Route>
 
             {/* 에러 페이지 */}
             <Route path='*' element={<NotFoundPage />}></Route>
