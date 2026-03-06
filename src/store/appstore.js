@@ -12,6 +12,5 @@ export const useAppStore = create((set) => ({
     set({
       isLoading: false,
       introDone: true,
-      
     }),
 }))
