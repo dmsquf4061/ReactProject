@@ -88,10 +88,10 @@ export default function Gnb({ active = "A", onChange, show = true }) {
                       className={cn(
                         "relative z-[1] h-10 rounded-full px-5",
                         "text-[14px] font-normal cursor-pointer",
-                        "hover:bg-transparent",
+                        "transition-all duration-200",
                         isActive
-                          ? "text-white"
-                          : "text-[var(--muted)] hover:text-white"
+                          ? "text-white hover:bg-[var(--primary)] hover:text-white"
+                          : "text-[var(--muted)] hover:text-[var(--primary)] hover:bg-transparent"
                       )}
                     >
                       {t.label}

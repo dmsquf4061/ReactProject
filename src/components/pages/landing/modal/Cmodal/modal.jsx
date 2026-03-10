@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react"
 import { useEffect, useRef, useState } from "react"
 
-function BModal({ open, project, onClose }) {
+function CModal({ open, project, onClose }) {
     const EASE = [0.22, 1, 0.36, 1]
 
     const [full, setFull] = useState(false)
@@ -200,4 +200,4 @@ function BModal({ open, project, onClose }) {
   )
 }
 
-export default BModal
+export default CModal

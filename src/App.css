@@ -42,3 +42,40 @@
 .read-the-docs {
   color: #888;
 }
+
+.brandlogoCarousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.brandlogoTrack {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: brandScrolling 30s linear infinite;
+}
+
+.brandlogoTrack--reverse {
+  animation-direction: reverse;
+}
+
+.brandlogoList {
+  display: flex;
+  flex-shrink: 0;
+  width: max-content;
+  gap: 16px;
+  padding-right: 16px;
+}
+
+.brandlogoList img {
+  display: block;
+}
+
+@keyframes brandScrolling {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 8px));
+  }
+}

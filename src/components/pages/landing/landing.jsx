@@ -10,7 +10,7 @@ import BSection from "./sections/Bsection"
 import CSection from "./sections/Csection"
 import DSection from "./sections/Dsection"
 
-import BModal from "./modal/Bmodal/modal"
+import CModal from "./modal/Cmodal/modal"
 
 export default function Landing() {
   const isLoading = useAppStore((s) => s.isLoading)
@@ -18,8 +18,8 @@ export default function Landing() {
   const [active, setActive] = useState("A")
   const [tick, setTick] = useState(0)
 
-  // ✅ B 모달 상태
-  const [isBModalOpen, setIsBModalOpen] = useState(false)
+  // ✅ C 모달 상태
+  const [isCModalOpen, setIsCModalOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState(null)
 
   const SECTIONS = useMemo(
@@ -43,19 +43,19 @@ export default function Landing() {
     setTick((t) => t + 1)
 
     // ✅ 섹션 이동 시 모달 닫기
-    setIsBModalOpen(false)
+    setIsCModalOpen(false)
     setSelectedProject(null)
   }
 
-  // ✅ BSection에서 카드 클릭 시 호출
-  const handleOpenBModal = (project) => {
+  // ✅ CSection에서 카드 클릭 시 호출
+  const handleOpenCModal = (project) => {
     setSelectedProject(project)
-    setIsBModalOpen(true)
+    setIsCModalOpen(true)
   }
 
   // ✅ 모달 닫기
-  const handleCloseBModal = () => {
-    setIsBModalOpen(false)
+  const handleCloseCModal = () => {
+    setIsCModalOpen(false)
     setSelectedProject(null)
   }
 
@@ -125,7 +125,7 @@ export default function Landing() {
 
       {/* 모달이 열리면 GNB 숨김 */}
       <Gnb
-        show={!isLoading && !isBModalOpen}
+        show={!isLoading && !isCModalOpen}
         active={active}
         onChange={handleNavChange}
       />
@@ -145,9 +145,9 @@ export default function Landing() {
             exit={sectionExit}
             transition={sectionTransition}
           >
-            {/* B 섹션일 때만 onOpenModal 전달 */}
-            {active === "B" ? (
-              <BSection onOpenModal={handleOpenBModal} />
+            {/* C 섹션일 때만 onOpenModal 전달 */}
+            {active === "C" ? (
+              <CSection onOpenModal={handleOpenCModal} />
             ) : (
               <ActiveSection />
             )}
@@ -167,10 +167,10 @@ export default function Landing() {
       </main>
 
       {/* B 모달 */}
-      <BModal
-        open={isBModalOpen}
+      <CModal
+        open={isCModalOpen}
         project={selectedProject}
-        onClose={handleCloseBModal}
+        onClose={handleCloseCModal}
       />
     </>
   )
