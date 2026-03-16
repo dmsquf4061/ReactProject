@@ -67,6 +67,40 @@ function CModal({ open, project, onClose }) {
         handleClose()
     }
 
+    const [viewport, setViewport] = useState({
+        width: 1200,
+        height: 800,
+    })
+
+    useEffect(() => {
+        const onResize = () => {
+        setViewport({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        })
+        }
+
+        onResize()
+        window.addEventListener("resize", onResize)
+        return () => window.removeEventListener("resize", onResize)
+    }, [])
+
+    const width = viewport.width
+    const height = viewport.height
+    const titleClass =
+        width < 360
+        ? "text-5xl"
+        : width < 768
+            ? "text-5xl"
+            : "text-8xl"
+
+    const titlePadding =
+        width < 768
+            ? "pt-20 pb-0 px-6"
+            : width < 1024
+            ? "pt-30 pb-0 px-7"
+            : "pt-50 pb-0 px-10"
+
   return (
     <AnimatePresence>
       {open && project && (
@@ -89,47 +123,46 @@ function CModal({ open, project, onClose }) {
                 onWheel={handleWheel}
             >
                 <motion.div
-                className="w-full overflow-hidden bg-[var(--primary)] shadow-xl"
-                initial={{
-                    opacity: 0,
-                    y: 120,
-                    scale: 0.96,
-                    height: "90vh",
-                    borderTopLeftRadius: 16,
-                    borderTopRightRadius: 16,
-                }}
-                animate={{
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    height: full ? "100vh" : "90vh",
-                    borderTopLeftRadius: full ? 0 : 16,
-                    borderTopRightRadius: full ? 0 : 16,
-                }}
-                exit={{
-                    opacity: 0,
-                    y: 80,
-                    scale: 0.96,
-                    height: "90vh",
-                    borderTopLeftRadius: 16,
-                    borderTopRightRadius: 16,
-                }}
-                transition={{ duration: 0.35, ease: EASE }}
+                    className="w-full overflow-hidden bg-[var(--primary)] shadow-xl"
+                    initial={{
+                        opacity: 0,
+                        y: 120,
+                        scale: 0.96,
+                        height: "90vh",
+                        borderTopLeftRadius: 16,
+                        borderTopRightRadius: 16,
+                    }}
+                    animate={{
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        height: full ? "100vh" : "90vh",
+                        borderTopLeftRadius: full ? 0 : 16,
+                        borderTopRightRadius: full ? 0 : 16,
+                    }}
+                    exit={{
+                        opacity: 0,
+                        y: 80,
+                        scale: 0.96,
+                        height: "90vh",
+                        borderTopLeftRadius: 16,
+                        borderTopRightRadius: 16,
+                    }}
+                    transition={{ duration: 0.35, ease: EASE }}
                 >
                     <div
                         ref={contentRef}
-                        className="h-full w-full overflow-y-auto p-6"
+                        className="h-full w-full flex flex-col overflow-y-auto p-6"
                         onWheel={handleContentWheel}
                     >
-                        <div className="flex items-start justify-between gap-4">
-                        <div>
-                            <h2 className="text-2xl font-bold text-[var(--secondary)]">
+                        
+                        <div className="flex flex-col w-full gap-5">
+                            <h2 className={`${titlePadding} ${titleClass} w-full`}>
                             {project.title}
                             </h2>
                             <p className="mt-2 text-sm leading-relaxed text-[var(--secondary)]">
                             {project.desc}
                             </p>
-                        </div>
                         </div>
 
                         <div className="mt-6 overflow-hidden rounded-xl">

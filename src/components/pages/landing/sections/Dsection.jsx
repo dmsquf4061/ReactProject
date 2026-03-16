@@ -7,28 +7,28 @@ function DSection() {
 
   const slides = [
     [
-      { id: 1, image: "./public/images/Dsection/img1.jpg", title: "제목 1", desc: "설명 1" },
-      { id: 2, image: "./public/images/Dsection/img2.jpg", title: "제목 2", desc: "설명 2" },
-      { id: 3, image: "./public/images/Dsection/img3.jpg", title: "제목 3", desc: "설명 3" },
-      { id: 4, image: "./public/images/Dsection/img4.jpg", title: "제목 4", desc: "설명 4" },
-      { id: 5, image: "./public/images/Dsection/img5.jpg", title: "제목 5", desc: "설명 5" },
-      { id: 6, image: "./public/images/Dsection/img6.jpg", title: "제목 6", desc: "설명 6" },
-      { id: 7, image: "./public/images/Dsection/img7.jpg", title: "제목 7", desc: "설명 7" },
-      { id: 8, image: "./public/images/Dsection/img8.jpg", title: "제목 8", desc: "설명 8" },
-      { id: 9, image: "./public/images/Dsection/img9.jpg", title: "제목 9", desc: "설명 9" },
-      { id: 10, image: "./public/images/Dsection/img10.jpg", title: "제목 10", desc: "설명 10" },
+      { id: 1, image: "./images/Dsection/img1.jpg", title: "제목 1", desc: "설명 1" },
+      { id: 2, image: "./images/Dsection/img2.jpg", title: "제목 2", desc: "설명 2" },
+      { id: 3, image: "./images/Dsection/img3.jpg", title: "제목 3", desc: "설명 3" },
+      { id: 4, image: "./images/Dsection/img4.jpg", title: "제목 4", desc: "설명 4" },
+      { id: 5, image: "./images/Dsection/img5.jpg", title: "제목 5", desc: "설명 5" },
+      { id: 6, image: "./images/Dsection/img6.jpg", title: "제목 6", desc: "설명 6" },
+      { id: 7, image: "./images/Dsection/img7.jpg", title: "제목 7", desc: "설명 7" },
+      { id: 8, image: "./images/Dsection/img8.jpg", title: "제목 8", desc: "설명 8" },
+      { id: 9, image: "./images/Dsection/img9.jpg", title: "제목 9", desc: "설명 9" },
+      { id: 10, image: "./images/Dsection/img10.jpg", title: "제목 10", desc: "설명 10" },
     ],
     [
-      { id: 1, image: "./public/images/Dsection/img1.jpg", title: "제목 1", desc: "설명 1" },
-      { id: 2, image: "./public/images/Dsection/img2.jpg", title: "제목 2", desc: "설명 2" },
-      { id: 3, image: "./public/images/Dsection/img3.jpg", title: "제목 3", desc: "설명 3" },
-      { id: 4, image: "./public/images/Dsection/img4.jpg", title: "제목 4", desc: "설명 4" },
-      { id: 5, image: "./public/images/Dsection/img5.jpg", title: "제목 5", desc: "설명 5" },
-      { id: 6, image: "./public/images/Dsection/img6.jpg", title: "제목 6", desc: "설명 6" },
-      { id: 7, image: "./public/images/Dsection/img7.jpg", title: "제목 7", desc: "설명 7" },
-      { id: 8, image: "./public/images/Dsection/img8.jpg", title: "제목 8", desc: "설명 8" },
-      { id: 9, image: "./public/images/Dsection/img9.jpg", title: "제목 9", desc: "설명 9" },
-      { id: 10, image: "./public/images/Dsection/img10.jpg", title: "제목 10", desc: "설명 10" },
+      { id: 1, image: "./images/Dsection/img1.jpg", title: "제목 1", desc: "설명 1" },
+      { id: 2, image: "./images/Dsection/img2.jpg", title: "제목 2", desc: "설명 2" },
+      { id: 3, image: "./images/Dsection/img3.jpg", title: "제목 3", desc: "설명 3" },
+      { id: 4, image: "./images/Dsection/img4.jpg", title: "제목 4", desc: "설명 4" },
+      { id: 5, image: "./images/Dsection/img5.jpg", title: "제목 5", desc: "설명 5" },
+      { id: 6, image: "./images/Dsection/img6.jpg", title: "제목 6", desc: "설명 6" },
+      { id: 7, image: "./images/Dsection/img7.jpg", title: "제목 7", desc: "설명 7" },
+      { id: 8, image: "./images/Dsection/img8.jpg", title: "제목 8", desc: "설명 8" },
+      { id: 9, image: "./images/Dsection/img9.jpg", title: "제목 9", desc: "설명 9" },
+      { id: 10, image: "./images/Dsection/img10.jpg", title: "제목 10", desc: "설명 10" },
     ],
   ]
 
@@ -146,7 +146,7 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
           >
             {/* 배경 glow */}
             <div
-              className="pointer-events-none absolute rounded-full bg-amber-300/50 blur-[20px]"
+              className="pointer-events-none absolute rounded-full bg-white blur-[20px]"
               style={{
                 width: "440px",
                 height: "440px",

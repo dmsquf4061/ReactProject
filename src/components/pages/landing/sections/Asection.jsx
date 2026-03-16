@@ -81,7 +81,7 @@ export default function ASection() {
         className="w-screen h-screen absolute"
       >
         <motion.img
-          src="./public/images/Asection/img1.jpg"
+          src="./images/Asection/img1.jpg"
           drag
           dragConstraints={constraintsRef}
           style={{ x: 200, y: 150 }}
@@ -89,7 +89,7 @@ export default function ASection() {
           className="w-[100px] h-[100px] object-contain cursor-grab active:cursor-grabbing"
         />
         <motion.img
-          src="./public/images/Asection/img2.jpg"
+          src="./images/Asection/img2.jpg"
           drag
           dragConstraints={constraintsRef}
           style={{ x: 500, y: 500 }}
@@ -97,7 +97,7 @@ export default function ASection() {
           className="w-[100px] h-[100px] object-contain cursor-grab active:cursor-grabbing"
         />
         <motion.img
-          src="./public/images/Asection/img3.jpg"
+          src="./images/Asection/img3.jpg"
           drag
           dragConstraints={constraintsRef}
           style={{ x: 1000, y: 600 }}
@@ -105,7 +105,7 @@ export default function ASection() {
           className="w-[100px] h-[100px] object-contain cursor-grab active:cursor-grabbing"
         />      
         <motion.img
-            src="./public/images/Asection/img4.jpg"
+            src="./images/Asection/img4.jpg"
             drag
             dragConstraints={constraintsRef}
             style={{ x: 1200, y: 400 }}
@@ -113,7 +113,7 @@ export default function ASection() {
             className="w-[100px] h-[100px] object-contain cursor-grab active:cursor-grabbing"
         />
         <motion.img
-            src="./public/images/Asection/img5.jpg"
+            src="./images/Asection/img5.jpg"
             drag
             dragConstraints={constraintsRef}
             style={{ x: 1000, y: 200 }}
