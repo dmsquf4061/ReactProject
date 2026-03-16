@@ -71,7 +71,7 @@ function CModal({ open, project, onClose }) {
     <AnimatePresence>
       {open && project && (
         <motion.div
-          className="fixed inset-0 z-[999] w-full bg-black/60"
+          className="fixed inset-0 z-[999] w-full bg-[var(--primary)]/80"
           onClick={handleBackdropClose}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -89,7 +89,7 @@ function CModal({ open, project, onClose }) {
                 onWheel={handleWheel}
             >
                 <motion.div
-                className="w-full overflow-hidden bg-white shadow-xl"
+                className="w-full overflow-hidden bg-[var(--primary)] shadow-xl"
                 initial={{
                     opacity: 0,
                     y: 120,
@@ -123,10 +123,10 @@ function CModal({ open, project, onClose }) {
                     >
                         <div className="flex items-start justify-between gap-4">
                         <div>
-                            <h2 className="text-2xl font-bold text-stone-900">
+                            <h2 className="text-2xl font-bold text-[var(--secondary)]">
                             {project.title}
                             </h2>
-                            <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                            <p className="mt-2 text-sm leading-relaxed text-[var(--secondary)]">
                             {project.desc}
                             </p>
                         </div>
@@ -145,7 +145,7 @@ function CModal({ open, project, onClose }) {
                             {project.tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="rounded-full bg-stone-100 px-3 py-1 text-sm text-stone-700"
+                                className="rounded-full bg-[var(--primary)] px-3 py-1 text-sm text-[var(--primary)]"
                             >
                                 {tag}
                             </span>

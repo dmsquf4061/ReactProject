@@ -31,32 +31,29 @@ export default function ASection() {
   const subtitleDelay = delayChildren + title.length * stagger + letterDuration
 
   return (
-    <div className="w-full h-full bg-stone-900 text-white flex flex-col items-center justify-center gap-4">
+    <div className="w-full h-full bg-[var(--primary)] text-[var(--secondary)] flex flex-col items-center justify-center gap-4">
       <motion.div
-        className="text-5xl font-bold"
+        className="text-6xl font-black"
         initial="hidden"
         animate={introDone ? "show" : "hidden"}
         variants={{
           hidden: {},
           show: {
-            transition: {
-              delayChildren,
-              staggerChildren: stagger,
-            },
+            transition: { delayChildren: 0.15, staggerChildren: 0.06 },
           },
         }}
       >
         {Array.from(title).map((ch, i) => (
           <motion.span
             key={`${ch}-${i}`}
-            style={{ display: "inline-block" }}
+            className="inline-block"
             variants={{
-              hidden: { opacity: 0, y: 10 },
+              hidden: { opacity: 0, y: 16 },
               show: {
                 opacity: 1,
                 y: 0,
                 transition: {
-                  duration: letterDuration,
+                  duration: 0.22,
                   ease: [0.22, 1, 0.36, 1],
                 },
               },
@@ -84,7 +81,7 @@ export default function ASection() {
         className="w-screen h-screen absolute"
       >
         <motion.img
-          src="./public/images/Asection/img.jpg"
+          src="./public/images/Asection/img1.jpg"
           drag
           dragConstraints={constraintsRef}
           style={{ x: 200, y: 150 }}
@@ -92,7 +89,7 @@ export default function ASection() {
           className="w-[100px] h-[100px] object-contain cursor-grab active:cursor-grabbing"
         />
         <motion.img
-          src="./public/images/Asection/img.jpg"
+          src="./public/images/Asection/img2.jpg"
           drag
           dragConstraints={constraintsRef}
           style={{ x: 500, y: 500 }}
@@ -100,7 +97,7 @@ export default function ASection() {
           className="w-[100px] h-[100px] object-contain cursor-grab active:cursor-grabbing"
         />
         <motion.img
-          src="./public/images/Asection/img.jpg"
+          src="./public/images/Asection/img3.jpg"
           drag
           dragConstraints={constraintsRef}
           style={{ x: 1000, y: 600 }}
@@ -108,7 +105,7 @@ export default function ASection() {
           className="w-[100px] h-[100px] object-contain cursor-grab active:cursor-grabbing"
         />      
         <motion.img
-            src="./public/images/Asection/img.jpg"
+            src="./public/images/Asection/img4.jpg"
             drag
             dragConstraints={constraintsRef}
             style={{ x: 1200, y: 400 }}
@@ -116,7 +113,7 @@ export default function ASection() {
             className="w-[100px] h-[100px] object-contain cursor-grab active:cursor-grabbing"
         />
         <motion.img
-            src="./public/images/Asection/img.jpg"
+            src="./public/images/Asection/img5.jpg"
             drag
             dragConstraints={constraintsRef}
             style={{ x: 1000, y: 200 }}

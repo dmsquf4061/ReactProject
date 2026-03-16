@@ -16,56 +16,56 @@ function BSection() {
     () => [
       {
         id: 1,
-        image: "./public/images/Bsection/img.jpg",
+        image: "./public/images/Bsection/img1.jpg",
         title: "Project A",
         description: "프로젝트 A 설명입니다.",
         color: "bg-white",
       },
       {
         id: 2,
-        image: "./public/images/Bsection/img.jpg",
+        image: "./public/images/Bsection/img2.jpg",
         title: "Project B",
         description: "프로젝트 B 설명입니다.",
         color: "bg-white",
       },
       {
         id: 3,
-        image: "./public/images/Bsection/img.jpg",
+        image: "./public/images/Bsection/img3.jpg",
         title: "Project C",
         description: "프로젝트 C 설명입니다.",
         color: "bg-white",
       },
       {
         id: 4,
-        image: "./public/images/Bsection/img.jpg",
+        image: "./public/images/Bsection/img4.jpg",
         title: "Project D",
         description: "프로젝트 D 설명입니다.",
         color: "bg-white",
       },
       {
         id: 5,
-        image: "./public/images/Bsection/img.jpg",
+        image: "./public/images/Bsection/img5.jpg",
         title: "Project E",
         description: "프로젝트 E 설명입니다.",
         color: "bg-white",
       },
       {
         id: 6,
-        image: "./public/images/Bsection/img.jpg",
+        image: "./public/images/Bsection/img6.jpg",
         title: "Project F",
         description: "프로젝트 F 설명입니다.",
         color: "bg-white",
       },
       {
         id: 7,
-        image: "./public/images/Bsection/img.jpg",
+        image: "./public/images/Bsection/img7.jpg",
         title: "Project G",
         description: "프로젝트 G 설명입니다.",
         color: "bg-white",
       },
       {
         id: 8,
-        image: "./public/images/Bsection/img.jpg",
+        image: "./public/images/Bsection/img8.jpg",
         title: "Project H",
         description: "프로젝트 H 설명입니다.",
         color: "bg-white",
@@ -158,13 +158,27 @@ function BSection() {
 
   // 타이틀 폰트 크기
   const titleClass =
-    width < 640 ? "text-5xl" : width < 1024 ? "text-5xl" : "text-6xl"
+    height <= 879
+      ? "text-5xl"
+      : width < 360
+        ? "text-5xl"
+        : width < 768
+          ? "text-5xl"
+          : "text-6xl"
+
+  // 타이틀 높이
+  const titleTop =
+    height <= 650
+      ? "top-[10%]"
+      : width < 1024
+        ? "top-[18%]"
+        : "top-[15%]"            
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-black text-white">
+    <div className="relative w-full h-full overflow-hidden bg-[var(--primary)] text-[var(--secondary)]">
       {/* 상단 타이틀 */}
       <motion.div
-        className={`absolute left-1/2 top-[12%] -translate-x-1/2 font-black italic tracking-tight ${titleClass}`}
+        className={`absolute left-1/2 ${titleTop} -translate-x-1/2 font-black italic tracking-tight ${titleClass}`}
         initial="hidden"
         animate={isLoading ? "hidden" : "show"}
         variants={{
@@ -281,10 +295,10 @@ function BSection() {
 
                 {/* 텍스트 */}
                 <div className="mt-4">
-                  <h3 className="text-base font-bold text-black md:text-xl">
+                  <h3 className="text-base font-bold text-[var(--primary)] md:text-xl">
                     {card.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-black/70 md:text-base">
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--muted)] md:text-base">
                     {card.description}
                   </p>
                 </div>

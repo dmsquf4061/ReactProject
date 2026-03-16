@@ -166,7 +166,7 @@ export default function Landing() {
         </AnimatePresence>
       </main>
 
-      {/* B 모달 */}
+      {/* C 모달 */}
       <CModal
         open={isCModalOpen}
         project={selectedProject}

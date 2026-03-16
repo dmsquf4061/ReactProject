@@ -43,39 +43,29 @@
   color: #888;
 }
 
-.brandlogoCarousel {
-  width: 100%;
-  overflow: hidden;
-}
-
-.brandlogoTrack {
-  display: flex;
-  width: max-content;
+.brandlogoCarousel > ul {
   will-change: transform;
-  animation: brandScrolling 30s linear infinite;
+  animation: brandScrolling 60s linear infinite;
 }
 
-.brandlogoTrack--reverse {
-  animation-direction: reverse;
-}
-
-.brandlogoList {
-  display: flex;
-  flex-shrink: 0;
-  width: max-content;
-  gap: 16px;
-  padding-right: 16px;
-}
-
-.brandlogoList img {
-  display: block;
+.brandlogoCarousel.reverse > ul {
+  animation-name: brandScrollingReverse;
 }
 
 @keyframes brandScrolling {
-  from {
+  0% {
     transform: translateX(0);
   }
-  to {
-    transform: translateX(calc(-50% - 8px));
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes brandScrollingReverse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
