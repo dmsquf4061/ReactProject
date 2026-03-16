@@ -160,7 +160,7 @@ function CModal({ open, project, onClose }) {
                             <h2 className={`${titlePadding} ${titleClass} w-full`}>
                             {project.title}
                             </h2>
-                            <p className="mt-2 text-sm leading-relaxed text-[var(--secondary)]">
+                            <p className="text-sm leading-relaxed text-[var(--secondary)]">
                             {project.desc}
                             </p>
                         </div>
