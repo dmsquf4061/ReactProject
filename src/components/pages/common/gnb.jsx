@@ -90,7 +90,7 @@ export default function Gnb({ active = "A", onChange, show = true }) {
                         "text-[14px] font-normal cursor-pointer",
                         "transition-all duration-200",
                         isActive
-                          ? "text-white hover:bg-[var(--primary)] hover:text-white"
+                          ? "text-white hover:text-white"
                           : "text-[var(--muted)] hover:text-[var(--primary)] hover:bg-transparent"
                       )}
                     >

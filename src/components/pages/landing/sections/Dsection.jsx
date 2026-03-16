@@ -83,7 +83,7 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
   const height = viewport.height
   const titleClass =
     width < 360
-      ? "text-5xl"
+      ? "text-4xl"
       : width < 768
         ? "text-5xl"
         : "text-8xl"
@@ -92,7 +92,7 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
       width < 768
         ? "pt-20 pb-6 px-6"
         : width < 1024
-          ? "pt-30 pb-7 px-7"
+          ? "pt-30 pb-6 px-6"
           : "pt-50 pb-10 px-10"
 
 

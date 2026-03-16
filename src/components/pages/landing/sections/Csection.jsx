@@ -7,49 +7,97 @@ function CSection({ onOpenModal }) {
     {
       id: "p1",
       title: "제목",
+      period: "1 month (2026.01 – 2026.02)",
       desc: "설명을 쓰세요",
       image: "./images/Csection/img1.jpg",
       tags: ["React", "Motion", "UI"],
+      fontFamily: [{ name: "Pretendard", value: "Pretendard" }],
+      colors: [
+        { name: "Background", hex: "#0B0B0B" },
+        { name: "Text", hex: "#FFFFFF" },
+      ],
+      description:
+        "Improved usability by simplifying layout and enhancing scroll-based interactions for smoother user flow.",
       href: "#",
     },
     {
       id: "p2",
       title: "제목",
+      period: "1 month (2026.01 – 2026.02)",
       desc: "설명을 쓰세요",
       image: "./images/Csection/img2.jpg",
-      tags: ["JS", "Turn.js", "Animation"],
+      tags: ["React", "Motion", "UI"],
+      fontFamily: [{ name: "Pretendard", value: "Pretendard" }],
+      colors: [
+        { name: "Background", hex: "#0B0B0B" },
+        { name: "Text", hex: "#FFFFFF" },
+      ],
+      description:
+        "Improved usability by simplifying layout and enhancing scroll-based interactions for smoother user flow.",
       href: "#",
     },
     {
       id: "p3",
       title: "제목",
+      period: "1 month (2026.01 – 2026.02)",
       desc: "설명을 쓰세요",
       image: "./images/Csection/img3.jpg",
       tags: ["React", "Motion", "UI"],
+      fontFamily: [{ name: "Pretendard", value: "Pretendard" }],
+      colors: [
+        { name: "Background", hex: "#0B0B0B" },
+        { name: "Text", hex: "#FFFFFF" },
+      ],
+      description:
+        "Improved usability by simplifying layout and enhancing scroll-based interactions for smoother user flow.",
       href: "#",
     },
     {
       id: "p4",
       title: "제목",
+      period: "1 month (2026.01 – 2026.02)",
       desc: "설명을 쓰세요",
       image: "./images/Csection/img4.jpg",
-      tags: ["JS", "Turn.js", "Animation"],
+      tags: ["React", "Motion", "UI"],
+      fontFamily: [{ name: "Pretendard", value: "Pretendard" }],
+      colors: [
+        { name: "Background", hex: "#0B0B0B" },
+        { name: "Text", hex: "#FFFFFF" },
+      ],
+      description:
+        "Improved usability by simplifying layout and enhancing scroll-based interactions for smoother user flow.",
       href: "#",
     },
     {
       id: "p5",
       title: "제목",
+      period: "1 month (2026.01 – 2026.02)",
       desc: "설명을 쓰세요",
       image: "./images/Csection/img5.jpg",
       tags: ["React", "Motion", "UI"],
+      fontFamily: [{ name: "Pretendard", value: "Pretendard" }],
+      colors: [
+        { name: "Background", hex: "#0B0B0B" },
+        { name: "Text", hex: "#FFFFFF" },
+      ],
+      description:
+        "Improved usability by simplifying layout and enhancing scroll-based interactions for smoother user flow.",
       href: "#",
     },
     {
       id: "p6",
       title: "제목",
+      period: "1 month (2026.01 – 2026.02)",
       desc: "설명을 쓰세요",
       image: "./images/Csection/img6.jpg",
-      tags: ["JS", "Turn.js", "Animation"],
+      tags: ["React", "Motion", "UI"],
+      fontFamily: [{ name: "Pretendard", value: "Pretendard" }],
+      colors: [
+        { name: "Background", hex: "#0B0B0B" },
+        { name: "Text", hex: "#FFFFFF" },
+      ],
+      description:
+        "Improved usability by simplifying layout and enhancing scroll-based interactions for smoother user flow.",
       href: "#",
     },
   ]
@@ -127,16 +175,16 @@ function CSection({ onOpenModal }) {
 
   const titleClass =
     width < 360
-      ? "text-5xl"
+      ? "text-4xl"
       : width < 768
         ? "text-5xl"
         : "text-8xl"
 
   const titlePadding =
       width < 768
-        ? "pt-20 pb-6 px-6"
+        ? "pt-20 pb-4 px-4"
         : width < 1024
-          ? "pt-30 pb-7 px-7"
+          ? "pt-30 pb-6 px-6"
           : "pt-50 pb-10 px-10"
 
   return (
@@ -187,7 +235,7 @@ function CSection({ onOpenModal }) {
 
         {/* 카드 리스트 */}
         <motion.div
-          className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
+          className="mt-10 grid grid-cols-1 gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3"
           initial="hidden"
           animate={state}
           variants={listV}

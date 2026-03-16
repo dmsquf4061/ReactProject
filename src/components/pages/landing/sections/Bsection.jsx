@@ -132,23 +132,25 @@ function BSection() {
   const sceneH = width < 640 ? 380 : width < 1024 ? 460 : 600
 
   // 카드 실제 너비
-  const cardW = width < 640 ? 150 : width < 1024 ? 190 : 300
+  const cardW = width < 360 ? 180 : width < 640 ? 200 : width < 1024 ? 200 : 310
 
   // 카드 실제 높이
   const cardH =
-    width < 640
-      ? 240
-      : width < 1024
+    width < 360
+      ? 300
+      : width < 640
         ? 310
-        : height >= 980
-          ? 470
-          : height >= 880
-            ? 360
-            : 310
+        : width < 1024
+          ? 310
+          : height >= 980
+            ? 470
+            : height >= 789
+              ? 360
+              : 310
 
   // 카드가 좌우로 얼마나 퍼질지
   const radiusX =
-    width < 640 ? sceneW * 0.26 : width < 1024 ? sceneW * 0.32 : sceneW * 0.38
+    width < 360 ? sceneW * 0.25 : width < 640 ? sceneW * 0.28 : width < 1024 ? sceneW * 0.32 : sceneW * 0.38
 
   // 카드가 위아래로 얼마나 곡선을 그릴지
   const radiusY = width < 640 ? 20 : width < 1024 ? 28 : 34
@@ -158,17 +160,19 @@ function BSection() {
 
   // 타이틀 폰트 크기
   const titleClass =
-    height <= 879
-      ? "text-5xl"
-      : width < 360
-        ? "text-5xl"
-        : width < 768
-          ? "text-5xl"
-          : "text-6xl"
+    height < 650
+      ? "text-4xl"
+        : width < 360
+          ? "text-4xl"
+          : width < 640
+            ? "text-5xl"
+            : width < 768
+              ? "text-5xl"
+              : "text-6xl"
 
   // 타이틀 높이
   const titleTop =
-    height <= 650
+    height <= 710
       ? "top-[10%]"
       : width < 1024
         ? "top-[18%]"
