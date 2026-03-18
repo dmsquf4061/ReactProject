@@ -153,10 +153,13 @@ function CModal({ open, project, onClose }) {
               }}
               transition={{ duration: 0.35, ease: EASE }}
             >
+              <div 
+                className="w-full h-full scroll-hidden overflow-y-auto flex justify-center"
+                ref={contentRef}
+                onWheel={handleContentWheel}
+              >
                 <div
-                    ref={contentRef}
-                    className="h-full w-full md:max-w-[1328px] flex flex-col scroll-hidden overflow-y-auto px-4 md:px-6 gap-10"
-                    onWheel={handleContentWheel}
+                    className="h-full w-full md:max-w-[1328px] flex flex-col px-4 md:px-6 gap-10"
                 >
                     <div className="flex flex-col w-full gap-4 md:gap-5">
                         <h2 className={`${titlePadding} ${titleClass} w-full`}>
@@ -306,6 +309,7 @@ function CModal({ open, project, onClose }) {
                         </AnimatePresence>
                     </div>
                 </div>
+              </div>
             </motion.div>
           </motion.div>
         </motion.div>

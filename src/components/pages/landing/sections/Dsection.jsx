@@ -33,11 +33,12 @@ function DSection() {
   ]
 
   const sentence = `
-dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfkdsljflksjflsjfldjflskjflsjflkdsjflsjlkjflksjfslkjflk
-dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfkdsljflksjflsjfldjflskjflsjflkdsjflsjlkjflksjfslkjflk
-dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfkdsljflksjflsjfldjflskjflsjflkdsjflsjlkjflksjfslkjflk
-dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfkdsljflksjflsjfldjflskjflsjflkdsjflsjlkjflksjfslkjflk
-dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfkdsljflksjflsjfldjflskjflsjflkdsjflsjlkjflksjfslkjflk
+여기는 내가 원하는 대로 줄을 나눌 수 있습니다.
+엔터를 치면 그대로 줄바꿈이 유지됩니다.
+
+여기는 한 줄 비운 문단입니다.
+
+이런 식으로 자유롭게 텍스트를 구성할 수 있습니다.
 `.trim()
 
   const handleMove = (e) => {
@@ -61,6 +62,7 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
     rgba(0,0,0,0.18) 90%,
     rgba(0,0,0,0) 100%
   )`
+
   const [viewport, setViewport] = useState({
     width: 1200,
     height: 800,
@@ -80,21 +82,22 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
   }, [])
 
   const width = viewport.width
-  const height = viewport.height
+
   const titleClass =
-    width < 360
-      ? "text-4xl"
-      : width < 768
-        ? "text-5xl"
-        : "text-8xl"
+    width < 360 ? "text-4xl" : width < 768 ? "text-5xl" : "text-8xl"
 
   const titlePadding =
-      width < 768
-        ? "pt-20 pb-6 px-6"
-        : width < 1024
-          ? "pt-30 pb-6 px-6"
-          : "pt-50 pb-10 px-10"
+    width < 768
+      ? "pt-20 pb-6"
+      : width < 1024
+        ? "pt-30 pb-6"
+        : "pt-50 pb-10"
 
+  const titleDelay = 0.15
+  const titleStagger = 0.06
+  const titleDuration = 0.22
+  const spotlightDelay =
+    titleDelay + (text.length - 1) * titleStagger + titleDuration
 
   return (
     <section className="w-full h-full bg-[var(--primary)] text-[var(--secondary)] overflow-y-auto scroll-hidden">
@@ -107,7 +110,10 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
           variants={{
             hidden: {},
             show: {
-              transition: { delayChildren: 0.15, staggerChildren: 0.06 },
+              transition: {
+                delayChildren: titleDelay,
+                staggerChildren: titleStagger,
+              },
             },
           }}
         >
@@ -121,7 +127,7 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
                   opacity: 1,
                   y: 0,
                   transition: {
-                    duration: 0.22,
+                    duration: titleDuration,
                     ease: [0.22, 1, 0.36, 1],
                   },
                 },
@@ -135,34 +141,39 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
         {/* spotlight 텍스트 영역 */}
         <motion.div
           className="relative flex flex-col items-center justify-center w-full min-h-screen overflow-hidden"
-          initial={{ opacity: 0, y: 18 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          transition={{
+            duration: 0.4,
+            delay: spotlightDelay,
+            ease: [0.22, 1, 0.36, 1],
+          }}
         >
           <div
-            className="relative w-full"
+            className="relative w-full md:max-w-[1328px]"
             onMouseMove={handleMove}
             onMouseLeave={handleLeave}
           >
-            {/* 배경 glow */}
+            {/* glow */}
             <div
-              className="pointer-events-none absolute rounded-full bg-white blur-[20px]"
+              className="pointer-events-none absolute rounded-full bg-white blur-[20px] transition-opacity duration-200"
               style={{
-                width: "440px",
-                height: "440px",
+                width: "400px",
+                height: "400px",
                 left: `${pos.x - 220}px`,
                 top: `${pos.y - 220}px`,
+                opacity: pos.x < 0 ? 0 : 1,
               }}
             />
 
             {/* 기본 텍스트 */}
-            <div className="relative text-[var(--secondary)]/20 text-base leading-[1.45] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl break-all whitespace-pre-wrap">
+            <div className="relative text-[var(--secondary)]/20 text-base leading-[1.45] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl whitespace-pre-wrap break-keep">
               {sentence}
             </div>
 
-            {/* spotlight 안쪽 텍스트 */}
+            {/* spotlight 텍스트 */}
             <div
-              className="pointer-events-none absolute inset-0 text-[var(--primary)] text-base leading-[1.45] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl break-all whitespace-pre-wrap"
+              className="pointer-events-none absolute inset-0 text-[var(--primary)] text-base leading-[1.45] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl whitespace-pre-wrap break-keep"
               style={{
                 WebkitMaskImage: spotlightMask,
                 maskImage: spotlightMask,
@@ -177,23 +188,39 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
 
         {/* 슬라이드 영역 */}
         <motion.div
-          className="w-full flex flex-col gap-4 rotate-6"
+          className="w-full flex flex-col gap-3 md:gap-4"
           initial="hidden"
           animate="show"
           variants={{
             hidden: {},
             show: {
-              transition: { delayChildren: 0.15, staggerChildren: 0.06 },
+              transition: {
+                delayChildren: spotlightDelay + 0.15,
+                staggerChildren: 0.06,
+              },
             },
           }}
         >
           {/* 첫 번째 줄 */}
-          <div className="brandlogoCarousel flex flex-nowrap w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-            <ul className="flex flex-shrink-0 gap-4 pr-4">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 18 },
+              show: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.35,
+                  ease: [0.22, 1, 0.36, 1],
+                },
+              },
+            }}
+            className="brandlogoCarousel flex flex-nowrap w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+          >
+            <ul className="flex flex-shrink-0 gap-3 md:gap-4 pr-3 md:pr-4">
               {slides[0].map((item) => (
                 <li
                   key={item.id}
-                  className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] overflow-hidden rounded-sm md:rounded-lg"
+                  className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] overflow-hidden rounded-sm md:rounded-lg"
                 >
                   <img
                     className="block w-full h-full object-cover"
@@ -204,11 +231,11 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
               ))}
             </ul>
 
-            <ul className="flex flex-shrink-0 gap-4 pr-4" aria-hidden>
+            <ul className="flex flex-shrink-0 gap-3 md:gap-4 pr-3 md:pr-4" aria-hidden>
               {slides[0].map((item) => (
                 <li
                   key={`copy-${item.id}`}
-                  className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] overflow-hidden rounded-sm md:rounded-lg"
+                  className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] overflow-hidden rounded-sm md:rounded-lg"
                 >
                   <img
                     className="block w-full h-full object-cover"
@@ -218,15 +245,28 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* 두 번째 줄 */}
-          <div className="brandlogoCarousel reverse flex flex-nowrap w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-            <ul className="flex flex-shrink-0 gap-4 pr-4">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 18 },
+              show: {
+                opacity: 1,
+                y: 0,
+                transition: {
+                  duration: 0.35,
+                  ease: [0.22, 1, 0.36, 1],
+                },
+              },
+            }}
+            className="brandlogoCarousel reverse flex flex-nowrap w-full overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]"
+          >
+            <ul className="flex flex-shrink-0 gap-3 md:gap-4 pr-3 md:pr-4">
               {slides[1].map((item) => (
                 <li
                   key={item.id}
-                  className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] overflow-hidden rounded-sm md:rounded-lg"
+                  className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] overflow-hidden rounded-sm md:rounded-lg"
                 >
                   <img
                     className="block w-full h-full object-cover"
@@ -237,11 +277,11 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
               ))}
             </ul>
 
-            <ul className="flex flex-shrink-0 gap-4 pr-4" aria-hidden>
+            <ul className="flex flex-shrink-0 gap-3 md:gap-4 pr-3 md:pr-4" aria-hidden>
               {slides[1].map((item) => (
                 <li
                   key={`copy-${item.id}`}
-                  className="flex-shrink-0 w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] overflow-hidden rounded-sm md:rounded-lg"
+                  className="flex-shrink-0 w-[150px] sm:w-[200px] md:w-[250px] lg:w-[300px] overflow-hidden rounded-sm md:rounded-lg"
                 >
                   <img
                     className="block w-full h-full object-cover"
@@ -251,7 +291,7 @@ dkanadjfksjflksjflkjflksjfjslkfjsklfjslkjflskjflsjflsdkjflksjflksdjlkfjdslffsjfk
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

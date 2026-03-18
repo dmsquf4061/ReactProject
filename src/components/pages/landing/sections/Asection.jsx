@@ -52,6 +52,8 @@ export default function ASection() {
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-[var(--primary)] text-[var(--secondary)] flex flex-col items-center justify-center gap-4">
+      
+      {/* 제목 */}
       <motion.div
         className="z-10 text-6xl font-black"
         initial="hidden"
@@ -84,6 +86,7 @@ export default function ASection() {
         ))}
       </motion.div>
 
+      {/* 서브타이틀 */}
       <motion.div
         className="z-10 text-xl font-normal opacity-80"
         initial={{ opacity: 0, y: 12 }}
@@ -97,6 +100,7 @@ export default function ASection() {
         {subtitle}
       </motion.div>
 
+      {/* 드래그 이미지 */}
       <div ref={constraintsRef} className="absolute inset-0 overflow-hidden">
         {items.map((item) => (
           <motion.img
@@ -111,7 +115,16 @@ export default function ASection() {
               opacity: introDone ? 1 : 0,
               scale: introDone ? 1 : 0.9,
             }}
-            transition={{ duration: 0.35 }}
+            whileHover={{
+              scale: [1, 1.15, 1],   // ⭐ 커졌다가 작아짐
+            }}
+            whileTap={{
+              scale: 0.92,
+            }}
+            transition={{
+              duration: 0.35,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="absolute w-[72px] h-[72px] sm:w-[90px] sm:h-[90px] md:w-[110px] md:h-[110px] object-contain cursor-grab active:cursor-grabbing select-none"
             style={{
               left: item.x,
