@@ -125,6 +125,16 @@ function DSection() {
     setShowSpotlight(false)
   }
 
+  const clearSpotlight = () => {
+    if (touchTimerRef.current) {
+      clearTimeout(touchTimerRef.current)
+      touchTimerRef.current = null
+    }
+
+    setShowSpotlight(false)
+    setPos({ x: -9999, y: -9999 })
+  }
+
   const handleTouchSpotlight = (e) => {
     const touch = e.touches[0]
     if (!touch) return
@@ -142,10 +152,18 @@ function DSection() {
     }
 
     touchTimerRef.current = setTimeout(() => {
-      setShowSpotlight(false)
-      setPos({ x: -9999, y: -9999 })
-      touchTimerRef.current = null
-    }, 900)
+      clearSpotlight()
+    }, 350)
+  }
+
+  const handleTouchEnd = () => {
+    if (touchTimerRef.current) {
+      clearTimeout(touchTimerRef.current)
+    }
+
+    touchTimerRef.current = setTimeout(() => {
+      clearSpotlight()
+    }, 180)
   }
 
   const spotlightMask = `radial-gradient(
@@ -161,7 +179,6 @@ function DSection() {
   return (
     <section className="w-full h-full bg-[var(--primary)] text-[var(--secondary)] overflow-y-auto scroll-hidden">
       <div className={`${titlePadding} w-full`}>
-        {/* 타이틀 */}
         <motion.div
           className={`${titleClass} font-black leading-none`}
           initial="hidden"
@@ -197,7 +214,6 @@ function DSection() {
           ))}
         </motion.div>
 
-        {/* spotlight 텍스트 영역 */}
         <motion.div
           className="relative flex flex-col items-center justify-center w-full min-h-screen overflow-hidden"
           initial={{ opacity: 0, y: 12 }}
@@ -213,10 +229,11 @@ function DSection() {
             onMouseMove={handleMove}
             onMouseLeave={handleLeave}
             onTouchStart={handleTouchSpotlight}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={clearSpotlight}
           >
-            {/* glow */}
             <div
-              className="pointer-events-none absolute rounded-full bg-white blur-[20px] transition-opacity duration-200"
+              className="pointer-events-none absolute rounded-full bg-white blur-[20px] transition-opacity duration-150"
               style={{
                 width: `${glowSize}px`,
                 height: `${glowSize}px`,
@@ -226,14 +243,12 @@ function DSection() {
               }}
             />
 
-            {/* 기본 텍스트 */}
             <div className="relative text-[var(--secondary)]/20 text-base leading-[1.45] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl whitespace-pre-wrap break-keep">
               {sentence}
             </div>
 
-            {/* spotlight 텍스트 */}
             <div
-              className="pointer-events-none absolute inset-0 text-[var(--primary)] text-base leading-[1.45] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl whitespace-pre-wrap break-keep transition-opacity duration-200"
+              className="pointer-events-none absolute inset-0 text-[var(--primary)] text-base leading-[1.45] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl whitespace-pre-wrap break-keep transition-opacity duration-150"
               style={{
                 WebkitMaskImage: spotlightMask,
                 maskImage: spotlightMask,
@@ -247,7 +262,6 @@ function DSection() {
           </div>
         </motion.div>
 
-        {/* 슬라이드 영역 */}
         <motion.div
           className="w-full flex flex-col gap-3 md:gap-4"
           initial="hidden"
@@ -262,7 +276,6 @@ function DSection() {
             },
           }}
         >
-          {/* 첫 번째 줄 */}
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 18 },
@@ -308,7 +321,6 @@ function DSection() {
             </ul>
           </motion.div>
 
-          {/* 두 번째 줄 */}
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 18 },
