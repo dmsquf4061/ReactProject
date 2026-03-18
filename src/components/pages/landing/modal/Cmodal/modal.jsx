@@ -7,8 +7,11 @@ function CModal({ open, project, onClose }) {
   const [full, setFull] = useState(false)
   const [isClosing, setIsClosing] = useState(false)
   const [isExpanding, setIsExpanding] = useState(false)
+  const [activeColorIndex, setActiveColorIndex] = useState(null)
+
   const contentRef = useRef(null)
   const touchStartYRef = useRef(0)
+  const colorTimerRef = useRef(null)
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : ""
@@ -17,6 +20,12 @@ function CModal({ open, project, onClose }) {
       setFull(false)
       setIsClosing(false)
       setIsExpanding(false)
+      setActiveColorIndex(null)
+
+      if (colorTimerRef.current) {
+        clearTimeout(colorTimerRef.current)
+        colorTimerRef.current = null
+      }
 
       if (contentRef.current) {
         contentRef.current.scrollTop = 0
@@ -25,6 +34,11 @@ function CModal({ open, project, onClose }) {
 
     return () => {
       document.body.style.overflow = ""
+
+      if (colorTimerRef.current) {
+        clearTimeout(colorTimerRef.current)
+        colorTimerRef.current = null
+      }
     }
   }, [open])
 
@@ -175,6 +189,19 @@ function CModal({ open, project, onClose }) {
     setIsExpanding(false)
   }
 
+  const handleColorTap = (index) => {
+    setActiveColorIndex(index)
+
+    if (colorTimerRef.current) {
+      clearTimeout(colorTimerRef.current)
+    }
+
+    colorTimerRef.current = setTimeout(() => {
+      setActiveColorIndex(null)
+      colorTimerRef.current = null
+    }, 900)
+  }
+
   const font = project?.fontFamily?.[0]
   const colors = project?.colors ?? []
 
@@ -279,14 +306,14 @@ function CModal({ open, project, onClose }) {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 text-left md:grid-cols-2 gap-4 md:gap-6">
+                  <div className="grid grid-cols-1 text-left md:grid-cols-2 gap-10 md:gap-6">
                     <div>
                       <h2 className="text-sm sm:text-[18px] text-white">
                         TYPOGRAPHY
                       </h2>
                       <div className="mt-4 h-px border-t border-t-[var(--muted)]" />
 
-                      <div className="mt-10 text-[var(--muted)]">
+                      <div className="mt-4 text-[var(--muted)]">
                         <p
                           className="text-4xl mb-6"
                           style={{ fontFamily: font?.value || "inherit" }}
@@ -316,18 +343,31 @@ function CModal({ open, project, onClose }) {
                       </h2>
                       <div className="mt-4 h-px border-t border-t-[var(--muted)]" />
 
-                      <ul className="mt-10 flex gap-6 flex-wrap">
-                        {colors.slice(0, 2).map((color, index) => (
-                          <li key={`${color.hex}-${index}`} className="relative group">
-                            <div
-                              className="w-20 h-20 rounded-lg cursor-pointer border border-[var(--muted)]"
-                              style={{ backgroundColor: color.hex }}
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center text-xs font-medium text-white bg-[var(--muted)]/70 backdrop-blur-sm opacity-0 transition-opacity duration-200 group-hover:opacity-100 pointer-events-none rounded-lg">
-                              {color.hex}
-                            </div>
-                          </li>
-                        ))}
+                      <ul className="mt-6 flex gap-4 md:gap-6 flex-wrap">
+                        {colors.slice(0, 2).map((color, index) => {
+                          const isActive = activeColorIndex === index
+
+                          return (
+                            <li
+                              key={`${color.hex}-${index}`}
+                              className="relative group"
+                              onClick={() => handleColorTap(index)}
+                            >
+                              <div
+                                className="w-20 h-20 rounded-lg cursor-pointer border border-[var(--muted)]"
+                                style={{ backgroundColor: color.hex }}
+                              />
+
+                              <div
+                                className={`absolute inset-0 flex items-center justify-center text-xs font-medium text-white bg-[var(--muted)]/70 backdrop-blur-sm rounded-lg transition-opacity duration-200 ${
+                                  isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                                }`}
+                              >
+                                {color.hex}
+                              </div>
+                            </li>
+                          )
+                        })}
                       </ul>
                     </div>
                   </div>
