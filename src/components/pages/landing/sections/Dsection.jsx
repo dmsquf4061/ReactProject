@@ -233,7 +233,7 @@ function DSection() {
             onTouchCancel={clearSpotlight}
           >
             <div
-              className="pointer-events-none absolute rounded-full bg-white blur-[20px] transition-opacity duration-150"
+              className="pointer-events-none absolute rounded-full bg-white blur-[5px] md:blur-[15px] transition-opacity duration-150"
               style={{
                 width: `${glowSize}px`,
                 height: `${glowSize}px`,
