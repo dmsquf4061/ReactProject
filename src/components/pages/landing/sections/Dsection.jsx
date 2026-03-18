@@ -1,9 +1,13 @@
 import { motion } from "motion/react"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 function DSection() {
   const text = "DSection"
+
   const [pos, setPos] = useState({ x: -9999, y: -9999 })
+  const [showSpotlight, setShowSpotlight] = useState(false)
+
+  const touchTimerRef = useRef(null)
 
   const slides = [
     [
@@ -41,28 +45,6 @@ function DSection() {
 이런 식으로 자유롭게 텍스트를 구성할 수 있습니다.
 `.trim()
 
-  const handleMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    setPos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    })
-  }
-
-  const handleLeave = () => {
-    setPos({ x: -9999, y: -9999 })
-  }
-
-  const spotlightMask = `radial-gradient(
-    circle 240px at ${pos.x}px ${pos.y}px,
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,0.95) 38%,
-    rgba(0,0,0,0.75) 58%,
-    rgba(0,0,0,0.45) 76%,
-    rgba(0,0,0,0.18) 90%,
-    rgba(0,0,0,0) 100%
-  )`
-
   const [viewport, setViewport] = useState({
     width: 1200,
     height: 800,
@@ -79,6 +61,15 @@ function DSection() {
     onResize()
     window.addEventListener("resize", onResize)
     return () => window.removeEventListener("resize", onResize)
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      if (touchTimerRef.current) {
+        clearTimeout(touchTimerRef.current)
+        touchTimerRef.current = null
+      }
+    }
   }, [])
 
   const width = viewport.width
@@ -109,6 +100,64 @@ function DSection() {
           : 400
 
   const glowHalf = glowSize / 2
+
+  const spotlightRadius =
+    width < 640
+      ? 130
+      : width < 768
+        ? 160
+        : width < 1024
+          ? 200
+          : 240
+
+  const handleMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+
+    setPos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    })
+    setShowSpotlight(true)
+  }
+
+  const handleLeave = () => {
+    setPos({ x: -9999, y: -9999 })
+    setShowSpotlight(false)
+  }
+
+  const handleTouchSpotlight = (e) => {
+    const touch = e.touches[0]
+    if (!touch) return
+
+    const rect = e.currentTarget.getBoundingClientRect()
+
+    setPos({
+      x: touch.clientX - rect.left,
+      y: touch.clientY - rect.top,
+    })
+    setShowSpotlight(true)
+
+    if (touchTimerRef.current) {
+      clearTimeout(touchTimerRef.current)
+    }
+
+    touchTimerRef.current = setTimeout(() => {
+      setShowSpotlight(false)
+      setPos({ x: -9999, y: -9999 })
+      touchTimerRef.current = null
+    }, 900)
+  }
+
+  const spotlightMask = `radial-gradient(
+    circle ${spotlightRadius}px at ${pos.x}px ${pos.y}px,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,0.95) 38%,
+    rgba(0,0,0,0.75) 58%,
+    rgba(0,0,0,0.45) 76%,
+    rgba(0,0,0,0.18) 90%,
+    rgba(0,0,0,0) 100%
+  )`
+
   return (
     <section className="w-full h-full bg-[var(--primary)] text-[var(--secondary)] overflow-y-auto scroll-hidden">
       <div className={`${titlePadding} w-full`}>
@@ -163,6 +212,7 @@ function DSection() {
             className="relative w-full md:max-w-[1328px]"
             onMouseMove={handleMove}
             onMouseLeave={handleLeave}
+            onTouchStart={handleTouchSpotlight}
           >
             {/* glow */}
             <div
@@ -172,7 +222,7 @@ function DSection() {
                 height: `${glowSize}px`,
                 left: `${pos.x - glowHalf}px`,
                 top: `${pos.y - glowHalf}px`,
-                opacity: pos.x < 0 ? 0 : 1,
+                opacity: showSpotlight ? 1 : 0,
               }}
             />
 
@@ -183,12 +233,13 @@ function DSection() {
 
             {/* spotlight 텍스트 */}
             <div
-              className="pointer-events-none absolute inset-0 text-[var(--primary)] text-base leading-[1.45] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl whitespace-pre-wrap break-keep"
+              className="pointer-events-none absolute inset-0 text-[var(--primary)] text-base leading-[1.45] sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl whitespace-pre-wrap break-keep transition-opacity duration-200"
               style={{
                 WebkitMaskImage: spotlightMask,
                 maskImage: spotlightMask,
                 WebkitMaskRepeat: "no-repeat",
                 maskRepeat: "no-repeat",
+                opacity: showSpotlight ? 1 : 0,
               }}
             >
               {sentence}
