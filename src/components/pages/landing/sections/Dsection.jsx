@@ -99,6 +99,16 @@ function DSection() {
   const spotlightDelay =
     titleDelay + (text.length - 1) * titleStagger + titleDuration
 
+  const glowSize =
+    width < 640
+      ? 220
+      : width < 768
+        ? 280
+        : width < 1024
+          ? 340
+          : 400
+
+  const glowHalf = glowSize / 2
   return (
     <section className="w-full h-full bg-[var(--primary)] text-[var(--secondary)] overflow-y-auto scroll-hidden">
       <div className={`${titlePadding} w-full`}>
@@ -158,10 +168,10 @@ function DSection() {
             <div
               className="pointer-events-none absolute rounded-full bg-white blur-[20px] transition-opacity duration-200"
               style={{
-                width: "400px",
-                height: "400px",
-                left: `${pos.x - 220}px`,
-                top: `${pos.y - 220}px`,
+                width: `${glowSize}px`,
+                height: `${glowSize}px`,
+                left: `${pos.x - glowHalf}px`,
+                top: `${pos.y - glowHalf}px`,
                 opacity: pos.x < 0 ? 0 : 1,
               }}
             />
