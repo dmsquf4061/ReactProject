@@ -208,14 +208,15 @@ function DSection() {
     offset: ["start end", "end start"],
   })
 
-  // 이미지가 먼저 화면에 꽉 차고, 그 뒤 더 커짐
+  // 1) 먼저 화면에 꽉 차고
+  // 2) 그 다음 더 커지게
   const imageScale = useTransform(
     scrollYProgress,
     [0.08, 0.5, 0.7, 1],
     [0.45, 1, 1.2, 1.2]
   )
 
-  // 꽉 찬 뒤부터 사라지고, 마지막엔 0 상태 유지
+  // opacity는 꽉 찬 이후부터 줄어들게
   const imageOpacity = useTransform(
     scrollYProgress,
     [0, 0.5, 0.7, 1],
@@ -223,9 +224,9 @@ function DSection() {
   )
 
   // 이미지 모서리가 둥글다가 꽉 차며 각지게
-  const imageRadius = useTransform(scrollYProgress, [0.08, 0.5], [28, 0])
+  const imageRadius = useTransform(scrollYProgress, [0.08, 0.72], [28, 0])
 
-  // 이미지가 사라질 때 아래 텍스트가 나타나고 유지
+  // 이미지 아래 텍스트가 점점 보이게
   const overlayTextOpacity = useTransform(
     scrollYProgress,
     [0.5, 0.7, 1],
@@ -242,7 +243,11 @@ function DSection() {
   return (
     <section
       ref={scrollContainerRef}
-      className="w-full h-full bg-[var(--primary)] text-[var(--secondary)] overflow-y-auto scroll-hidden"
+      className="w-full h-[100svh] bg-[var(--primary)] text-[var(--secondary)] overflow-y-auto scroll-hidden overscroll-y-none touch-pan-y"
+      style={{
+        WebkitOverflowScrolling: "touch",
+        overscrollBehaviorY: "none",
+      }}
     >
       <div className={`${titlePadding} w-full`}>
         {/* 타이틀: 화면에 보일 때 한 글자씩 등장 */}
@@ -283,7 +288,7 @@ function DSection() {
         </motion.div>
 
         {/* 이미지 확대 + 투명도 전환 섹션 */}
-        <section ref={imageSectionRef} className="relative h-[300vh] w-full">
+        <section ref={imageSectionRef} className="relative h-[180svh] md:h-[300vh] w-full">
           <div className="sticky top-0 h-screen w-full overflow-hidden">
             {/* 이미지 아래쪽에 숨어 있다가 드러나는 텍스트 */}
             <motion.div
@@ -316,6 +321,7 @@ function DSection() {
                 src="./images/Dsection/img1.jpg"
                 alt="대표 이미지"
                 className="block h-full w-full object-cover"
+                draggable="false"
               />
             </motion.div>
           </div>
@@ -323,10 +329,10 @@ function DSection() {
 
         {/* 스포트라이트 텍스트 영역 */}
         <motion.div
-          className="flex justify-center relative w-full min-h-[70svh] md:min-h-[80svh] lg:min-h-screen py-12 md:py-20 lg:py-28 pb-40 md:pb-52 lg:pb-64 z-20"
+          className="relative flex flex-col items-center justify-center w-full min-h-screen overflow-hidden"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.25, root: scrollContainerRef }}
+          viewport={{ once: false, amount: 0.25 }}
           variants={{
             hidden: { opacity: 0, y: 70, scale: 0.96 },
             show: {
@@ -342,7 +348,7 @@ function DSection() {
         >
           {/* 마우스 / 터치 기준 영역 */}
           <div
-            className="relative w-full md:max-w-[1328px] px-4 md:px-6 z-20"
+            className="relative w-full md:max-w-[1328px]"
             onMouseMove={handleMove}
             onMouseLeave={handleLeave}
             onTouchStart={handleTouchSpotlight}
@@ -384,10 +390,10 @@ function DSection() {
 
         {/* 캐러셀 전체: 화면에 보일 때 한 줄씩 등장 */}
         <motion.div
-          className="relative w-full flex flex-col gap-3 md:gap-4 mt-16 md:mt-24 lg:mt-32 z-10"
+          className="w-full flex flex-col gap-3 md:gap-4"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.2, root: scrollContainerRef }}
+          viewport={{ once: false, amount: 0.2 }}
           variants={{
             hidden: {},
             show: {
@@ -399,7 +405,6 @@ function DSection() {
         >
           {/* 첫 번째 줄 캐러셀 */}
           <motion.div
-            style={{ willChange: "transform" }}
             variants={{
               hidden: { opacity: 0, y: 90, scale: 0.94 },
               show: {
@@ -424,6 +429,7 @@ function DSection() {
                     className="block w-full h-full object-cover"
                     src={item.image}
                     alt={item.title}
+                    draggable="false"
                   />
                 </li>
               ))}
@@ -440,6 +446,7 @@ function DSection() {
                     className="block w-full h-full object-cover"
                     src={item.image}
                     alt={item.title}
+                    draggable="false"
                   />
                 </li>
               ))}
@@ -448,7 +455,6 @@ function DSection() {
 
           {/* 두 번째 줄 캐러셀 */}
           <motion.div
-            style={{ willChange: "transform" }}
             variants={{
               hidden: { opacity: 0, y: 90, scale: 0.94 },
               show: {
@@ -473,6 +479,7 @@ function DSection() {
                     className="block w-full h-full object-cover"
                     src={item.image}
                     alt={item.title}
+                    draggable="false"
                   />
                 </li>
               ))}
@@ -489,6 +496,7 @@ function DSection() {
                     className="block w-full h-full object-cover"
                     src={item.image}
                     alt={item.title}
+                    draggable="false"
                   />
                 </li>
               ))}
