@@ -14,9 +14,6 @@ function DSection() {
   // 터치 후 잠깐 보였다가 사라지게 할 타이머
   const touchTimerRef = useRef(null)
 
-  // 이 섹션 자체가 스크롤되는 컨테이너
-  const scrollContainerRef = useRef(null)
-
   // 이미지 확대/투명도 효과를 걸 구간
   const imageSectionRef = useRef(null)
 
@@ -89,6 +86,7 @@ function DSection() {
   }, [])
 
   const width = viewportSize.width
+  const isMobile = width < 768
 
   // 타이틀 글자 크기 반응형
   const titleClass =
@@ -131,6 +129,8 @@ function DSection() {
 
   // 마우스 움직일 때 스포트라이트 좌표 계산
   const handleMove = (e) => {
+    if (isMobile) return
+
     const rect = e.currentTarget.getBoundingClientRect()
 
     setPos({
@@ -176,7 +176,7 @@ function DSection() {
 
     touchTimerRef.current = setTimeout(() => {
       clearSpotlight()
-    }, 350)
+    }, 250)
   }
 
   // 터치 끝나면 약간 뒤에 스포트라이트 숨김
@@ -187,7 +187,7 @@ function DSection() {
 
     touchTimerRef.current = setTimeout(() => {
       clearSpotlight()
-    }, 180)
+    }, 120)
   }
 
   // 원형으로 텍스트가 드러나게 하는 마스크
@@ -201,9 +201,8 @@ function DSection() {
     rgba(0,0,0,0) 100%
   )`
 
-  // 내부 스크롤 컨테이너 기준으로 이미지 섹션의 스크롤 진행값 계산
+  // 페이지 전체 스크롤 기준으로 이미지 섹션의 스크롤 진행값 계산
   const { scrollYProgress } = useScroll({
-    container: scrollContainerRef,
     target: imageSectionRef,
     offset: ["start end", "end start"],
   })
@@ -213,7 +212,7 @@ function DSection() {
   const imageScale = useTransform(
     scrollYProgress,
     [0.08, 0.5, 0.7, 1],
-    [0.45, 1, 1.2, 1.2]
+    isMobile ? [0.7, 1, 1.05, 1.05] : [0.45, 1, 1.2, 1.2]
   )
 
   // opacity는 꽉 찬 이후부터 줄어들게
@@ -224,7 +223,11 @@ function DSection() {
   )
 
   // 이미지 모서리가 둥글다가 꽉 차며 각지게
-  const imageRadius = useTransform(scrollYProgress, [0.08, 0.72], [28, 0])
+  const imageRadius = useTransform(
+    scrollYProgress,
+    [0.08, 0.72],
+    isMobile ? [18, 0] : [28, 0]
+  )
 
   // 이미지 아래 텍스트가 점점 보이게
   const overlayTextOpacity = useTransform(
@@ -241,14 +244,7 @@ function DSection() {
   )
 
   return (
-    <section
-      ref={scrollContainerRef}
-      className="w-full h-[100svh] bg-[var(--primary)] text-[var(--secondary)] overflow-y-auto scroll-hidden overscroll-y-none touch-pan-y"
-      style={{
-        WebkitOverflowScrolling: "touch",
-        overscrollBehaviorY: "none",
-      }}
-    >
+    <section className="w-full min-h-screen bg-[var(--primary)] text-[var(--secondary)] overflow-x-hidden">
       <div className={`${titlePadding} w-full`}>
         {/* 타이틀: 화면에 보일 때 한 글자씩 등장 */}
         <motion.div
@@ -314,8 +310,9 @@ function DSection() {
                 scale: imageScale,
                 opacity: imageOpacity,
                 borderRadius: imageRadius,
+                willChange: "transform, opacity",
               }}
-              className="absolute inset-0 z-10 will-change-transform overflow-hidden"
+              className="absolute inset-0 z-10 overflow-hidden"
             >
               <img
                 src="./images/Dsection/img1.jpg"
@@ -329,10 +326,10 @@ function DSection() {
 
         {/* 스포트라이트 텍스트 영역 */}
         <motion.div
-          className="relative flex flex-col items-center justify-center w-full min-h-screen overflow-hidden"
+          className="relative w-full min-h-[70svh] md:min-h-[80svh] lg:min-h-screen py-12 md:py-20 lg:py-28 pb-40 md:pb-52 lg:pb-64 z-20"
           initial="hidden"
           whileInView="show"
-          viewport={{ once: false, amount: 0.25 }}
+          viewport={{ once: false, amount: 0.55 }}
           variants={{
             hidden: { opacity: 0, y: 70, scale: 0.96 },
             show: {
@@ -348,7 +345,7 @@ function DSection() {
         >
           {/* 마우스 / 터치 기준 영역 */}
           <div
-            className="relative w-full md:max-w-[1328px]"
+            className="relative w-full md:max-w-[1328px] px-4 md:px-6 z-20"
             onMouseMove={handleMove}
             onMouseLeave={handleLeave}
             onTouchStart={handleTouchSpotlight}
@@ -390,7 +387,7 @@ function DSection() {
 
         {/* 캐러셀 전체: 화면에 보일 때 한 줄씩 등장 */}
         <motion.div
-          className="w-full flex flex-col gap-3 md:gap-4"
+          className="relative w-full flex flex-col gap-3 md:gap-4 mt-16 md:mt-24 lg:mt-32 z-10"
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.2 }}
