@@ -124,8 +124,8 @@ function DSection() {
   const titleClass =
     width < 360 ? "text-4xl" : width < 768 ? "text-5xl" : "text-6xl"
 
-  const titlePadding =
-    width < 768 ? "pt-20 pb-6" : width < 1024 ? "pt-30 pb-6" : "pt-50 pb-10"
+const titlePadding =
+  width < 768 ? "pt-20 pb-0" : width < 1024 ? "pt-30 pb-0" : "pt-50 pb-0"
 
   const titleDelay = 0.15
   const titleStagger = 0.06
@@ -172,11 +172,14 @@ function DSection() {
   [1, 1, 2.5, 4]
 )
   const imageOpacity = useTransform(scrollYProgress, [0, 0.5, 0.7, 1], [1, 1, 0, 0])
-const imageRadius = useTransform(
-  imageScale,
-  [1.1, 1.7],
-  [40, 0]
-)
+  const maxRadius = width < 640 ? 16 : width < 768 ? 24 : width < 1024 ? 32 : 40
+ const textareaRows = viewportSize.height < 650 ? 2 : viewportSize.height < 800 ? 3 : 6 
+
+  const imageRadius = useTransform(
+    imageScale,
+    [1, 1.7],
+    [maxRadius, 0]
+  )
   const overlayTextOpacity = useTransform(scrollYProgress, [0.5, 0.7, 1], [0, 1, 1])
   // const overlayTextY = useTransform(scrollYProgress, [0.5, 0.7, 1], [40, 0, 0])
 
@@ -218,7 +221,7 @@ const imageRadius = useTransform(
         }
       `}</style>
 
-      <div className={`${titlePadding} w-full flex flex-col gap-20`}>
+      <div className={`${titlePadding} w-full flex flex-col gap-6 md:gap-10`}>
 
         {/* ── 타이틀 ── */}
         <motion.div
@@ -258,7 +261,7 @@ const imageRadius = useTransform(
           className="relative h-[180vh] md:h-[300vh] w-full flex flex-col items-center"
         >
           {/* ✅ sticky div에 max-w-[1280px] 추가 → 1280px 이상에서 이미지 폭 고정 */}
-          <div className="sticky top-0 h-screen w-full overflow-hidden">
+          <div className="sticky top-0 h-[100svh] w-full overflow-hidden flex items-center justify-center">
 
             {/* 오버레이 텍스트 */}
             <motion.div
@@ -278,12 +281,18 @@ const imageRadius = useTransform(
             {/* 확대/축소 이미지 */}
 <motion.div
   style={{ scale: imageScale, opacity: imageOpacity }}
-  className="absolute inset-0 z-10 flex items-center justify-center"
+  className="absolute inset-0 z-10 flex items-center justify-center px-4 md:px-6"
 >
   <motion.div
-    style={{ borderRadius: imageRadius }}
-    className="w-[1280px] aspect-[16/9] overflow-hidden"
-  >
+  style={{ 
+    borderRadius: imageRadius,
+    aspectRatio: width < 768 ? "4/3" : "16/9",
+    maxHeight: "70svh",
+    width: "100%",
+    maxWidth: "1280px",
+  }}
+  className="overflow-hidden"
+>
     <img
       src="./images/Dsection/img1.jpg"
       alt="대표 이미지"
@@ -347,7 +356,7 @@ const imageRadius = useTransform(
 
         {/* ── 캐러셀 ── */}
         <motion.div
-          className="w-full flex flex-col gap-3 md:gap-4"
+          className="w-full flex flex-col gap-3 md:gap-4 mb-20 md:mb-32 lg:mb-40"
           initial="hidden"
           whileInView="show"
           viewport={{ once: false, amount: 0.2 }}
@@ -418,37 +427,38 @@ const imageRadius = useTransform(
       </div>
 
       {/* ── Contact 섹션 ── */}
-      <section className="w-full min-h-screen flex flex-col justify-center">
-        <motion.div
-          className="mx-auto flex w-full md:max-w-[1280px] px-4 md:px-6 flex-col justify-center gap-16 md:gap-20"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: false, amount: 0.15 }}
-          variants={{
-            hidden: { opacity: 0, y: 60 },
-            show: {
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-            },
-          }}
-        >
-          <div className="flex flex-col gap-4 md:gap-5">
-            <h2 className={`w-full ${titleClass} font-black leading-none`}>
-              Contact
-            </h2>
-          </div>
+<section className="w-full flex flex-col items-center pt-16 pb-16" style={{ minHeight: "100svh", justifyContent: "center" }}>
+  <motion.div
+    className="mx-auto flex w-full md:max-w-[1280px] px-4 md:px-6 flex-col gap-16 md:gap-20"
+    style={{ gap: viewportSize.height < 650 ? "24px" : viewportSize.height < 800 ? "40px" : undefined }}
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: false, amount: 0.15 }}
+    variants={{
+      hidden: { opacity: 0, y: 60 },
+      show: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+      },
+    }}
+  >
+    <div className="flex flex-col gap-4 md:gap-5">
+      <h2 className={`w-full ${titleClass} font-black leading-none text-center`}>
+        Contact
+      </h2>
+    </div>
 
-          <div>
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, x: 30 },
-                show: {
-                  opacity: 1,
-                  x: 0,
-                  transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.2 },
-                },
-              }}
+    <div className="w-full">
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, x: 30 },
+          show: {
+            opacity: 1,
+            x: 0,
+            transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay: 0.2 },
+          },
+        }}
               className="mx-auto w-full text-left"
             >
               <div className="mt-4 h-px border-t border-t-[var(--muted)]" />
@@ -488,7 +498,7 @@ const imageRadius = useTransform(
                   value={formState.message}
                   onChange={handleFormChange}
                   placeholder="Write your message..."
-                  rows={6}
+                  rows={textareaRows}
                   className="w-full resize-none appearance-none border-0 bg-transparent text-sm text-white placeholder:text-[var(--muted)] focus:outline-none md:text-base"
                   style={{ backgroundColor: "transparent" }}
                 />
@@ -498,7 +508,7 @@ const imageRadius = useTransform(
                 {isFormComplete && (
                   <motion.div
                     key="contact-button-wrap"
-                    className="mt-10 flex justify-center pb-10"
+                    className={`${viewportSize.height < 650 ? "mt-5" : "mt-10"} flex justify-center pb-10`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
