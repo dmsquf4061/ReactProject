@@ -285,12 +285,12 @@ const titlePadding =
 >
   <motion.div
   style={{ 
-    borderRadius: imageRadius,
-    aspectRatio: width < 768 ? "4/3" : "16/9",
-    maxHeight: "70svh",
-    width: "100%",
-    maxWidth: "1280px",
-  }}
+  borderRadius: imageRadius,
+  aspectRatio: width < 768 ? "3/4" : "16/9",
+  maxHeight: "70svh",
+  width: "100%",
+  maxWidth: "1280px",
+}}
   className="overflow-hidden"
 >
     <img
