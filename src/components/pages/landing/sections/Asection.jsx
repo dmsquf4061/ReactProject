@@ -6,8 +6,8 @@ export default function ASection() {
   const constraintsRef = useRef(null)
   const introDone = useAppStore((s) => s.introDone)
 
-  const title = "ASection"
-  const subtitle = "시안을 만드는 중입니다."
+  const title = "PORTFOLIO"
+  const subtitle = "디자인과 구현을 함께하는 웹디자이너 고은별입니다."
 
   const delayChildren = 0.15
   const stagger = 0.08
@@ -37,11 +37,41 @@ export default function ASection() {
       }
 
       setItems([
-        { id: 1, src: "./images/Asection/img1.jpg", x: safeX(0.12), y: safeY(0.18) },
-        { id: 2, src: "./images/Asection/img2.jpg", x: safeX(0.3), y: safeY(0.68) },
-        { id: 3, src: "./images/Asection/img3.jpg", x: safeX(0.68), y: safeY(0.72) },
-        { id: 4, src: "./images/Asection/img4.jpg", x: safeX(0.82), y: safeY(0.42) },
-        { id: 5, src: "./images/Asection/img5.jpg", x: safeX(0.7), y: safeY(0.14) },
+        {
+          id: 1,
+          src: "./images/Asection/img1.png",
+          x: safeX(0.10),
+          y: safeY(0.16),
+          size: "clamp(130px, 13vw, 240px)",
+        },
+        {
+          id: 2,
+          src: "./images/Asection/img2.png",
+          x: safeX(0.27),
+          y: safeY(0.67),
+          size: "clamp(90px, 9vw, 160px)",
+        },
+        {
+          id: 3,
+          src: "./images/Asection/img3.png",
+          x: safeX(0.67),
+          y: safeY(0.70),
+          size: "clamp(110px, 11vw, 190px)",
+        },
+        {
+          id: 4,
+          src: "./images/Asection/img4.png",
+          x: safeX(0.82),
+          y: safeY(0.40),
+          size: "clamp(80px, 8vw, 140px)",
+        },
+        {
+          id: 5,
+          src: "./images/Asection/img5.png",
+          x: safeX(0.69),
+          y: safeY(0.13),
+          size: "clamp(140px, 14vw, 250px)",
+        },
       ])
     }
 
@@ -55,7 +85,7 @@ export default function ASection() {
       
       {/* 제목 */}
       <motion.div
-        className="z-10 text-6xl font-black"
+        className="z-10 text-6xl font-black tracking-[0.025em]"
         initial="hidden"
         animate={introDone ? "show" : "hidden"}
         variants={{

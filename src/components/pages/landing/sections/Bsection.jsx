@@ -6,7 +6,7 @@ import { useAppStore } from "@/store/appstore"
 
 function BSection() {
   // 상단 타이틀 텍스트
-  const text = "BSection"
+  const text = "TOOLS"
 
   // 로딩 끝난 뒤에만 애니메이션 시작
   const isLoading = useAppStore((s) => s.isLoading)
@@ -16,58 +16,58 @@ function BSection() {
     () => [
       {
         id: 1,
-        image: "./images/Bsection/img1.jpg",
-        title: "Project A",
-        description: "프로젝트 A 설명입니다.",
+        image: "./images/Bsection/img1.png",
+        title: "Illustrator",
+        description: "벡터 그래픽 작업",
         color: "bg-white",
       },
       {
         id: 2,
-        image: "./images/Bsection/img2.jpg",
-        title: "Project B",
-        description: "프로젝트 B 설명입니다.",
+        image: "./images/Bsection/img2.png",
+        title: "Photoshop",
+        description: "웹 디자인 및 이미지 편집",
         color: "bg-white",
       },
       {
         id: 3,
-        image: "./images/Bsection/img3.jpg",
-        title: "Project C",
-        description: "프로젝트 C 설명입니다.",
+        image: "./images/Bsection/img3.png",
+        title: "Figma",
+        description: "UI/UX 디자인",
         color: "bg-white",
       },
       {
         id: 4,
-        image: "./images/Bsection/img4.jpg",
-        title: "Project D",
-        description: "프로젝트 D 설명입니다.",
+        image: "./images/Bsection/img4.png",
+        title: "HTML5",
+        description: "웹 구조 설계",
         color: "bg-white",
       },
       {
         id: 5,
-        image: "./images/Bsection/img5.jpg",
-        title: "Project E",
-        description: "프로젝트 E 설명입니다.",
+        image: "./images/Bsection/img5.png",
+        title: "CSS3",
+        description: "반응형 UI 구현",
         color: "bg-white",
       },
       {
         id: 6,
-        image: "./images/Bsection/img6.jpg",
-        title: "Project F",
-        description: "프로젝트 F 설명입니다.",
+        image: "./images/Bsection/img6.png",
+        title: "JavaScript",
+        description: "인터랙션 UI 구현",
         color: "bg-white",
       },
       {
         id: 7,
-        image: "./images/Bsection/img7.jpg",
-        title: "Project G",
-        description: "프로젝트 G 설명입니다.",
+        image: "./images/Bsection/img7.png",
+        title: "GitHub",
+        description: "Git 관리 및 협업",
         color: "bg-white",
       },
       {
         id: 8,
-        image: "./images/Bsection/img8.jpg",
-        title: "Project H",
-        description: "프로젝트 H 설명입니다.",
+        image: "./images/Bsection/img8.png",
+        title: "React",
+        description: "컴포넌트 기반 UI 구현",
         color: "bg-white",
       },
     ],
@@ -143,10 +143,10 @@ function BSection() {
         : width < 1024
           ? 310
           : height >= 980
-            ? 470
+            ? 410
             : height >= 789
-              ? 360
-              : 310
+              ? 340
+              : 280
 
   // 카드가 좌우로 얼마나 퍼질지
   const radiusX =
@@ -176,13 +176,13 @@ function BSection() {
       ? "top-[10%]"
       : width < 1024
         ? "top-[18%]"
-        : "top-[15%]"            
+        : "top-[18%]"            
 
   return (
     <div className="relative w-full h-full overflow-hidden bg-[var(--primary)] text-[var(--secondary)]">
       {/* 상단 타이틀 */}
       <motion.div
-        className={`absolute left-1/2 ${titleTop} -translate-x-1/2 font-black italic tracking-tight ${titleClass}`}
+        className={`absolute left-1/2 ${titleTop} -translate-x-1/2 font-black italic tracking-normal ${titleClass}`}
         initial="hidden"
         animate={isLoading ? "hidden" : "show"}
         variants={{

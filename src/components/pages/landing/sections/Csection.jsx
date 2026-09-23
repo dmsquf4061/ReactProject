@@ -136,8 +136,8 @@ function CSection({ onOpenModal }) {
   const state = play ? "show" : "hidden"
   const EASE = [0.22, 1, 0.36, 1]
 
-  const title = "Csection"
-  const subtitle = "일부 프로젝트를 카드 형태로 정리했어요."
+  const title = "PROJECTS"
+  const subtitle = "실무 경험을 바탕으로 완성한 프로젝트와 디자인을 담았습니다."
 
   const delayChildren = 0.15
   const stagger = 0.08
