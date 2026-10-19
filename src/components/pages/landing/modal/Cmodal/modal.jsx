@@ -289,11 +289,26 @@ function CModal({ open, project, onClose }) {
                   </div>
 
                   <div className="w-full md:h-[800px] flex justify-center">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover rounded-xl"
-                    />
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative block h-full w-full overflow-hidden rounded-xl"
+                    >
+                      <img
+                        src={project.modalImage || project.image}
+                        alt={project.title}
+                        className="h-full w-full rounded-xl object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      />
+
+                      {/* 호버 오버레이 */}
+                      <div className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <span className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm text-[var(--primary)] transition-colors">
+                          프로젝트 바로가기
+                          {/* <span aria-hidden="true">↗</span> */}
+                        </span>
+                      </div>
+                    </a>
                   </div>
 
                   <div className="mt-10 text-left">
@@ -301,7 +316,7 @@ function CModal({ open, project, onClose }) {
                       CONCEPT
                     </h2>
                     <div className="mt-4 h-px border-t border-t-[var(--muted)]" />
-                    <p className="mt-6 max-w-2xl text-sm text-[var(--muted)]">
+                    <p className="mt-6 text-sm text-[var(--muted)]">
                       {project.desc}
                     </p>
                   </div>
@@ -344,7 +359,7 @@ function CModal({ open, project, onClose }) {
                       <div className="mt-4 h-px border-t border-t-[var(--muted)]" />
 
                       <ul className="mt-6 flex gap-4 md:gap-6 flex-wrap">
-                        {colors.slice(0, 2).map((color, index) => {
+                        {colors.map((color, index) => {
                           const isActive = activeColorIndex === index
 
                           return (
@@ -377,7 +392,7 @@ function CModal({ open, project, onClose }) {
                       PROCESS & SOLUTIONS
                     </h2>
                     <div className="mt-4 h-px border-t border-t-[var(--muted)]" />
-                    <p className="mt-6 max-w-2xl text-sm text-[var(--muted)]">
+                    <p className="mt-6 text-sm text-[var(--muted)]">
                       {project.description}
                     </p>
                   </div>

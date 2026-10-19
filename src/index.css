@@ -6,6 +6,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: "ChosunCentennial";
+  src: url("https://gcore.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/ChosunCentennial.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

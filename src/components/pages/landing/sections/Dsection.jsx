@@ -2,7 +2,7 @@ import { AnimatePresence, motion, useScroll, useTransform } from "motion/react"
 import { useEffect, useMemo, useRef, useState } from "react"
 
 function DSection() {
-  const text = "DSection"
+  const text = "ABOUT ME"
 
   const [pos, setPos] = useState({ x: -9999, y: -9999 })
   const [showSpotlight, setShowSpotlight] = useState(false)
@@ -46,13 +46,11 @@ function DSection() {
   ]
 
   const sentence = `
-여기는 내가 원하는 대로 줄을 나눌 수 있습니다.
-엔터를 치면 그대로 줄바꿈이 유지됩니다.
-
-여기는 한 줄 비운 문단입니다.
-
-이런 식으로 자유롭게 텍스트를 구성할 수 있습니다.
-`.trim()
+새로운 것을 탐색하고, 다양한 관점에서 문제를 바라보는 것을 좋아합니다. 
+익숙한 방식에 머무르기보다 다른 가능성을 찾아보고, 
+관심이 생긴 분야는 충분히 이해할 때까지 깊이 들여다봅니다. 
+다양한 경험과 관심사를 바탕으로 저만의 시각을 넓혀가고 있습니다.
+  `.trim()
 
   const [viewportSize, setViewportSize] = useState({ width: 1200, height: 800 })
 
@@ -239,7 +237,7 @@ const titlePadding =
           {Array.from(text).map((ch, i) => (
             <motion.span
               key={i}
-              className="inline-block"
+              className={`inline-block ${ch === " " ? "whitespace-pre" : ""}`}
               variants={{
                 hidden: { opacity: 0, y: 18 },
                 show: {
@@ -265,15 +263,20 @@ const titlePadding =
 
             {/* 오버레이 텍스트 */}
             <motion.div
-              style={{ opacity: overlayTextOpacity, }}
+              style={{ opacity: overlayTextOpacity }}
               className="absolute inset-0 z-0 flex items-center justify-center px-6 text-center"
             >
-              <div className="max-w-5xl">
-                <p className="text-3xl font-black md:text-6xl lg:text-7xl text-[var(--secondary)]">
-                  DSection
+              <div className="w-full max-w-5xl">
+                <p className="text-4xl font-black leading-none md:text-6xl lg:text-7xl text-[var(--secondary)]">
+                  ABOUT ME
                 </p>
-                <p className="mt-4 text-sm md:text-lg lg:text-xl text-[var(--secondary)]/80 whitespace-pre-wrap break-keep">
-                  {sentence}
+
+                <p className="mt-6 text-base font-medium md:text-xl lg:text-2xl text-[var(--secondary)]/90">
+                  호기심은 많고, 취향은 확실하게.
+                </p>
+
+                <p className="mt-3 text-sm leading-relaxed md:text-lg lg:text-xl text-[var(--secondary)]/70 whitespace-pre-wrap break-keep">
+                  좋아하는 것에 깊이 빠지고, 새로운 관심사를 발견하며 나만의 취향을 만들어갑니다.
                 </p>
               </div>
             </motion.div>
