@@ -8,7 +8,7 @@ function CSection({ onOpenModal }) {
     {
       id: "p1",
       title: "솔브케이 주식회사",
-      period: "1 month (2024.10 – 2024.10)",
+      period: "1 month (2024.10 – 2024.11)",
       desc: "기업 웹사이트를 퍼블리싱하고, IT 솔루션과 주요 서비스 정보를 웹 화면에 구현했습니다.",
       image: "./images/Csection/img1.png",
       tags: ["HTML", "CSS", "JavaScript", "swiper", "aos"],
@@ -29,7 +29,7 @@ function CSection({ onOpenModal }) {
     {
       id: "p2",
       title: "토끼런",
-      period: "1 month (2024.11 – 2024.11)",
+      period: "1 month (2024.11 – 2024.12)",
       desc: "웹 게임을 퍼블리싱하고, JavaScript를 활용해 게임 인터랙션과 화면 전환 기능을 구현했습니다.",
       image: "./images/Csection/img2.png",
       tags: ["HTML", "CSS", "JavaScript"],
@@ -48,18 +48,19 @@ function CSection({ onOpenModal }) {
     },
     {
       id: "p3",
-      title: "제목",
+      title: "우리동네 환경정보",
       period: "1 month (2026.01 – 2026.02)",
-      desc: "설명을 쓰세요",
+      desc: "환경정보 대시보드를 퍼블리싱하고, HTML·CSS·JavaScript를 활용해 UI 요소와 인터랙션을 구현했습니다.",
       image: "./images/Csection/img3.png",
-      tags: ["React", "Motion", "UI"],
+      tags: ["HTML", "CSS", "JavaScript"],
       fontFamily: [{ name: "Pretendard", value: "Pretendard" }],
       colors: [
-        { name: "Background", hex: "#0B0B0B" },
-        { name: "Text", hex: "#FFFFFF" },
+        { name: "Background", hex: "#F5F6FA" },
+        { name: "Primary", hex: "#B9B7F5" },
+        { name: "Text", hex: "#333333" },
       ],
       description:
-        "Improved usability by simplifying layout and enhancing scroll-based interactions for smoother user flow.",
+        "환경정보 대시보드를 제공하는 웹사이트를 퍼블리싱했습니다. HTML·CSS·JavaScript를 활용해 날씨, 대기질, 수질, 자외선 등 환경정보를 전달하는 UI를 구현하고, 다양한 정보가 명확하게 전달되도록 화면 요소와 레이아웃을 구성했습니다.",
       modalImage: "./images/Csection/modal3.png",
       href: "https://aid.mcee.go.kr/pos/",
     },
