@@ -124,11 +124,12 @@ export default function Landing() {
       </AnimatePresence>
 
       {/* 모달이 열리면 GNB 숨김 */}
-      <Gnb
-        show={!isLoading && !isCModalOpen}
-        active={active}
-        onChange={handleNavChange}
-      />
+<Gnb
+  show={!isLoading && !isCModalOpen}
+  active={active}
+  onChange={handleNavChange}
+  isProjectDetail={isCModalOpen}
+/>
 
       <main className="relative min-h-screen">
         <AnimatePresence mode="sync" initial={false}>

@@ -101,23 +101,7 @@ function CSection({ onOpenModal }) {
       modalImage: "./images/Csection/modal5.png",
       href: "#",
     },
-    {
-      id: "p6",
-      title: "제목",
-      period: "1 month (2026.01 – 2026.02)",
-      desc: "설명을 쓰세요",
-      image: "./images/Csection/img6.jpg",
-      tags: ["React", "Motion", "UI"],
-      fontFamily: [{ name: "Pretendard", value: "Pretendard" }],
-      colors: [
-        { name: "Background", hex: "#0B0B0B" },
-        { name: "Text", hex: "#FFFFFF" },
-      ],
-      description:
-        "Improved usability by simplifying layout and enhancing scroll-based interactions for smoother user flow.",
-      modalImage: "./images/Csection/modal6.png",
-      href: "#",
-    },
+    
   ]
 
   const introDone = useAppStore((s) => s.introDone)
