@@ -297,7 +297,7 @@ const titlePadding =
   className="overflow-hidden"
 >
     <img
-      src="./images/Dsection/img1.jpg"
+      src="./images/Dsection/img.png"
       alt="대표 이미지"
       className="w-full h-full object-cover"
       draggable="false"

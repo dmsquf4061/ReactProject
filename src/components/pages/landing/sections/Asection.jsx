@@ -76,37 +76,65 @@ export default function ASection() {
     ? "clamp(3.2rem, 13vw, 5.5rem)"
     : isTablet
       ? "clamp(6rem, 12vw, 9rem)"
-      : "clamp(8rem, 15vw, 18.75rem)";
+      : "clamp(8rem, 15vw, 15rem)";
 
   return (
     <section className="relative h-full min-h-screen w-full overflow-hidden bg-[#151515] text-white">
-      {/* 중앙 타이틀 */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={
-          introDone
-            ? { opacity: 1, y: 0 }
-            : { opacity: 0, y: 20 }
-        }
-        transition={{
-          duration: 0.7,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="
-          pointer-events-none absolute left-1/2 top-1/2 z-10
-          w-max max-w-none -translate-x-1/2 -translate-y-1/2
-          whitespace-nowrap font-normal leading-none
-        "
+      {/* 중앙 타이틀 - 부드러운 글자별 등장 */}
+      <div
+        className="absolute z-10"
         style={{
-          fontSize: titleSize,
-          transform: `translate(-50%, -50%) rotate(${isMobile ? 0 : 4}deg)`,
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
         }}
       >
-        PORTFOLIO
-      </motion.div>
+        <motion.div
+          initial="hidden"
+          animate={introDone ? "visible" : "hidden"}
+          variants={{
+            hidden: {},
+            // 부모
+            visible: {
+              transition: {
+                delayChildren: 0.15,
+                staggerChildren: 0.06,
+              },
+            },
+          }}
+          className="flex w-max whitespace-nowrap font-bold leading-none"
+          style={{
+            fontSize: titleSize,
+          }}
+        >
+          {"PORTFOLIO".split("").map((letter, index) => (
+            <motion.span
+              key={index}
+              variants={{
+                // 글자별
+                hidden: {
+                  opacity: 0,
+                  y: 16,
+                },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: 0.22,
+                    ease: [0.22, 1, 0.36, 1],
+                  },
+                },
+              }}
+              className="inline-block"
+            >
+              {letter}
+            </motion.span>
+          ))}
+        </motion.div>
+      </div>
 
       {/* 드래그 가능한 이미지 */}
-      <div
+      {/*<div
         ref={constraintsRef}
         className="absolute inset-0 z-20 overflow-hidden"
       >
@@ -151,17 +179,43 @@ export default function ASection() {
           );
         })}
       </div>
-
+      */}
       {/* 하단 연도 */}
-      <div className="absolute bottom-5 left-5 z-30 text-xs text-white/30 sm:bottom-8 sm:left-8 sm:text-base">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={
+          introDone
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: 10 }
+        }
+        transition={{
+          duration: 0.6,
+          delay: 1.5,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="absolute bottom-5 left-5 z-30 text-xs text-white/30 sm:bottom-8 sm:left-8 sm:text-base"
+      >
         WORKS 2024–2026
-      </div>
+      </motion.div>
 
       {/* 하단 슬로건 */}
-      <div className="absolute bottom-5 right-5 z-30 text-right text-[10px] font-normal text-white/30 sm:bottom-8 sm:right-8 sm:text-sm md:text-base">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={
+          introDone
+            ? { opacity: 1, y: 0 }
+            : { opacity: 0, y: 10 }
+        }
+        transition={{
+          duration: 0.6,
+          delay: 1.65,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="absolute bottom-5 right-5 z-30 text-right text-[10px] font-normal text-white/30 sm:bottom-8 sm:right-8 sm:text-sm md:text-base"
+      >
         <div>DESIGN WITH INTENTION.</div>
         <div>BUILT WITH PURPOSE.</div>
-      </div>
+      </motion.div>
     </section>
   );
 }
