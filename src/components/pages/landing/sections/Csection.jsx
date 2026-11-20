@@ -99,7 +99,7 @@ function CSection({ onOpenModal }) {
       description:
         "KAT MACONIE 크림 토너 패드의 제품 기획부터 상세페이지 디자인까지 전 과정을 진행했습니다. 제품의 핵심 가치인 수분 진정과 보습을 중심으로 콘텐츠 구조와 비주얼 방향을 설계하고, ChatGPT를 활용해 제품 연출 이미지와 제형 이미지를 제작했습니다. 블루 컬러를 중심으로 제품의 청량감과 보습감을 전달하고, 제품 특징과 성분 정보를 직관적으로 이해할 수 있도록 상세페이지를 구성했습니다.",
       modalImage: "./images/Csection/modal5.png",
-      href: "#",
+      href: "/ReactProject/projects/kat-maconie",
     },
     
   ]
