@@ -80,7 +80,8 @@ export default function ASection() {
 
   return (
     <section className="relative h-full min-h-screen w-full overflow-hidden bg-[#151515] text-white">
-      {/* 중앙 타이틀 - 부드러운 글자별 등장 */}
+      
+      {/* 중앙 타이틀 - 부드러운 순차 등장 */}
       <div
         className="absolute z-10"
         style={{
@@ -94,11 +95,10 @@ export default function ASection() {
           animate={introDone ? "visible" : "hidden"}
           variants={{
             hidden: {},
-            // 부모
             visible: {
               transition: {
-                delayChildren: 0.15,
-                staggerChildren: 0.06,
+                delayChildren: 0.1,
+                staggerChildren: 0.065,
               },
             },
           }}
@@ -110,28 +110,30 @@ export default function ASection() {
           {"PORTFOLIO".split("").map((letter, index) => (
             <motion.span
               key={index}
+              className="inline-block"
               variants={{
-                // 글자별
                 hidden: {
                   opacity: 0,
-                  y: 16,
+                  y: 22,
+                  filter: "blur(5px)",
                 },
                 visible: {
                   opacity: 1,
                   y: 0,
+                  filter: "blur(0px)",
                   transition: {
-                    duration: 0.22,
-                    ease: [0.22, 1, 0.36, 1],
+                    duration: 0.7,
+                    ease: [0.16, 1, 0.3, 1],
                   },
                 },
               }}
-              className="inline-block"
             >
               {letter}
             </motion.span>
           ))}
         </motion.div>
       </div>
+
 
       {/* 드래그 가능한 이미지 */}
       {/*<div
@@ -189,8 +191,8 @@ export default function ASection() {
             : { opacity: 0, y: 10 }
         }
         transition={{
-          duration: 0.6,
-          delay: 1.5,
+          duration: 0.3,
+          delay: 1.0,
           ease: [0.22, 1, 0.36, 1],
         }}
         className="absolute bottom-5 left-5 z-30 text-xs text-white/30 sm:bottom-8 sm:left-8 sm:text-base"
@@ -207,8 +209,8 @@ export default function ASection() {
             : { opacity: 0, y: 10 }
         }
         transition={{
-          duration: 0.6,
-          delay: 1.65,
+          duration: 0.3,
+          delay: 1.15,
           ease: [0.22, 1, 0.36, 1],
         }}
         className="absolute bottom-5 right-5 z-30 text-right text-[10px] font-normal text-white/30 sm:bottom-8 sm:right-8 sm:text-sm md:text-base"
